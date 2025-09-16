@@ -3,16 +3,12 @@
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(248, 250, 252, 0.8);
+    background: rgba(248, 250, 252, 0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     z-index: 1000;
     padding: 1rem 0;
     transition: var(--transition);
-}
-
-[data-theme="dark"] .navbar {
-    background: rgba(15, 23, 42, 0.8);
 }
 
 .nav-container {
@@ -65,20 +61,6 @@
     width: 100%;
 }
 
-.theme-toggle {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    border-radius: 6px;
-    padding: 0.5rem;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.theme-toggle:hover {
-    color: var(--primary);
-    border-color: var(--primary);
-}
 
 /* Mobile Navigation */
 .mobile-menu-toggle {

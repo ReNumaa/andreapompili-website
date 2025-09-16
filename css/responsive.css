@@ -87,7 +87,15 @@
         gap: 0.75rem;
     }
 
-    .services-grid, .blog-grid {
+    .services-grid {
+        display: none;
+    }
+    
+    .services-scroll-container {
+        display: block;
+    }
+    
+    .blog-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
