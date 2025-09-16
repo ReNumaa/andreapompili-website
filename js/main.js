@@ -48,30 +48,104 @@ function closeMobileMenu() {
     document.body.style.overflow = 'auto';
 }
 
-// Theme toggle
-function toggleTheme() {
-    const body = document.body;
-    const themeIcons = document.querySelectorAll('.theme-toggle i');
+// Services page-like scroll functionality
+function initServicesScroll() {
+    const servicesScroll = document.getElementById('servicesScroll');
+    const scrollDots = document.querySelectorAll('.scroll-dot');
+    const cards = document.querySelectorAll('.service-card-mobile');
     
-    if (body.getAttribute('data-theme') === 'light') {
-        body.setAttribute('data-theme', 'dark');
-        themeIcons.forEach(icon => icon.className = 'fas fa-sun');
-        localStorage.setItem('theme', 'dark');
-    } else {
-        body.setAttribute('data-theme', 'light');
-        themeIcons.forEach(icon => icon.className = 'fas fa-moon');
-        localStorage.setItem('theme', 'light');
+    if (!servicesScroll || !scrollDots.length || !cards.length) return;
+    
+    totalCards = cards.length;
+    currentCardIndex = 0;
+    
+    function updateCards() {
+        cards.forEach((card, index) => {
+            card.classList.remove('active', 'previous', 'next');
+            
+            if (index === currentCardIndex) {
+                card.classList.add('active');
+            } else if (index < currentCardIndex) {
+                card.classList.add('previous');
+            } else {
+                card.classList.add('next');
+            }
+        });
+        
+        // Update dots
+        scrollDots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentCardIndex);
+        });
     }
+    
+    function goToCard(index) {
+        if (index >= 0 && index < cards.length) {
+            currentCardIndex = index;
+            updateCards();
+        }
+    }
+    
+    // Touch swipe handling
+    let startX = 0;
+    let startY = 0;
+    let isSwipe = false;
+    
+    servicesScroll.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isSwipe = false;
+    });
+    
+    servicesScroll.addEventListener('touchmove', (e) => {
+        if (!startX || !startY) return;
+        
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const diffX = Math.abs(startX - currentX);
+        const diffY = Math.abs(startY - currentY);
+        
+        // Detect horizontal swipe
+        if (diffX > diffY && diffX > 30) {
+            isSwipe = true;
+            e.preventDefault();
+        }
+    });
+    
+    servicesScroll.addEventListener('touchend', (e) => {
+        if (!startX || !isSwipe) return;
+        
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                // Swipe left - next card
+                goToCard(currentIndex + 1);
+            } else {
+                // Swipe right - previous card
+                goToCard(currentIndex - 1);
+            }
+        }
+        
+        startX = 0;
+        startY = 0;
+        isSwipe = false;
+    });
+    
+    // Dot navigation
+    scrollDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            goToCard(index);
+        });
+    });
+    
+    // Initialize first card as active
+    updateCards();
 }
 
-// Load saved theme
+// Initialize on load
 window.addEventListener('load', () => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.setAttribute('data-theme', savedTheme);
-    const themeIcons = document.querySelectorAll('.theme-toggle i');
-    themeIcons.forEach(icon => {
-        icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-    });
+    initServicesScroll();
 });
 
 // Close mobile menu on window resize
@@ -183,9 +257,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Coming soon notification for blog articles
+function showComingSoon() {
+    showNotification('📝 Articolo in preparazione! Sarà disponibile presto.', 'info');
+}
+
+// Global navigation function for cards
+let currentCardIndex = 0;
+let totalCards = 0;
+
+function navigateCard(direction) {
+    const cards = document.querySelectorAll('.service-card-mobile');
+    if (!cards.length) return;
+    
+    totalCards = cards.length;
+    currentCardIndex = Math.max(0, Math.min(totalCards - 1, currentCardIndex + direction));
+    
+    // Update cards
+    cards.forEach((card, index) => {
+        card.classList.remove('active', 'previous', 'next');
+        
+        if (index === currentCardIndex) {
+            card.classList.add('active');
+        } else if (index < currentCardIndex) {
+            card.classList.add('previous');
+        } else {
+            card.classList.add('next');
+        }
+    });
+    
+    // Update dots
+    const scrollDots = document.querySelectorAll('.scroll-dot');
+    scrollDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentCardIndex);
+    });
+}
+
 // Make functions available globally
 window.toggleMobileMenu = toggleMobileMenu;
 window.closeMobileMenu = closeMobileMenu;
-window.toggleTheme = toggleTheme;
 window.toggleAdmin = toggleAdmin;
 window.publishArticle = publishArticle;
+window.showComingSoon = showComingSoon;
+window.initServicesScroll = initServicesScroll;
+window.navigateCard = navigateCard;
