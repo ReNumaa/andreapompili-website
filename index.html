@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body data-theme="light">
+<body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -31,9 +31,6 @@
                 <a href="#servizi" class="nav-link">Servizi</a>
                 <a href="#blog" class="nav-link">Blog</a>
                 <a href="#contatti" class="nav-link">Contatti</a>
-                <button class="theme-toggle" onclick="toggleTheme()">
-                    <i class="fas fa-moon"></i>
-                </button>
             </div>
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
@@ -51,9 +48,6 @@
         <a href="#servizi" class="mobile-nav-link" onclick="closeMobileMenu()">Servizi</a>
         <a href="#blog" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
         <a href="#contatti" class="mobile-nav-link" onclick="closeMobileMenu()">Contatti</a>
-        <button class="theme-toggle" onclick="toggleTheme()" style="background: var(--primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; margin-top: 1rem;">
-            <i class="fas fa-moon"></i> <span>Cambia Tema</span>
-        </button>
     </div>
 
     <!-- Hero Section -->
@@ -184,6 +178,7 @@
                     Soluzioni complete per la tua crescita digitale, dall'idea alla realizzazione
                 </p>
             </div>
+            <!-- Desktop Services Grid -->
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
@@ -258,6 +253,95 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- Mobile Services Scroll -->
+            <div class="services-scroll-container">
+                <div class="services-scroll" id="servicesScroll">
+                    <button class="card-nav card-nav-prev" onclick="navigateCard(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="card-nav card-nav-next" onclick="navigateCard(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="service-card-mobile">
+                        <div class="service-icon-mobile">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="service-title-mobile">Sviluppo Web & App</h3>
+                        <div class="service-price-mobile">da €800</div>
+                        <p class="service-description-mobile">
+                            Soluzioni web moderne con React, Node.js e database scalabili. Include hosting, SSL e supporto.
+                        </p>
+                        <ul class="service-features-mobile">
+                            <li>Siti responsive</li>
+                            <li>E-commerce personalizzati</li>
+                            <li>Applicazioni web</li>
+                            <li>SEO e performance</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card-mobile">
+                        <div class="service-icon-mobile">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="service-title-mobile">Infrastruttura IT</h3>
+                        <div class="service-price-mobile">da €800</div>
+                        <p class="service-description-mobile">
+                            Progettazione e gestione infrastrutture IT. Virtualizzazione, cloud e architetture ibride.
+                        </p>
+                        <ul class="service-features-mobile">
+                            <li>Setup Proxmox/VMware</li>
+                            <li>Migrazione cloud</li>
+                            <li>Backup automatici</li>
+                            <li>Monitoring 24/7</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card-mobile">
+                        <div class="service-icon-mobile">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="service-title-mobile">Assistenza IT</h3>
+                        <div class="service-price-mobile">da €80/ora</div>
+                        <p class="service-description-mobile">
+                            Supporto tecnico professionale con interventi rapidi e manutenzione preventiva.
+                        </p>
+                        <ul class="service-features-mobile">
+                            <li>Helpdesk remoto</li>
+                            <li>Interventi on-site</li>
+                            <li>Contratti assistenza</li>
+                            <li>Formazione team</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card-mobile">
+                        <div class="service-icon-mobile">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="service-title-mobile">Consulenza Strategica</h3>
+                        <div class="service-price-mobile">da €600</div>
+                        <p class="service-description-mobile">
+                            Analisi e strategia di digitalizzazione con roadmap dettagliate e ROI misurabili.
+                        </p>
+                        <ul class="service-features-mobile">
+                            <li>Audit IT completo</li>
+                            <li>Piano digitalizzazione</li>
+                            <li>Technology assessment</li>
+                            <li>ROI e business case</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="scroll-indicator">
+                    <i class="fas fa-hand-point-right"></i> Scorri per vedere tutti i servizi
+                </div>
+                <div class="scroll-dots">
+                    <div class="scroll-dot active"></div>
+                    <div class="scroll-dot"></div>
+                    <div class="scroll-dot"></div>
+                    <div class="scroll-dot"></div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -284,8 +368,8 @@
                             Confronto approfondito tra le due piattaforme di virtualizzazione più diffuse. 
                             Analisi di costi, performance e casi d'uso per aiutarti nella scelta migliore per la tua infrastruttura...
                         </p>
-                        <a href="mailto:andrea.pompili1997@gmail.com?subject=Richiesta articolo Proxmox vs ESXi" class="read-more">
-                            Richiedi articolo completo <i class="fas fa-arrow-right"></i>
+                        <a href="blog/proxmox-vs-esxi-2025.html" class="read-more">
+                            Leggi l'articolo completo <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
@@ -301,8 +385,8 @@
                             Guida completa per una migrazione cloud sicura e senza interruzioni. 
                             Dalla pianificazione all'esecuzione: strategie, tool e best practices per il successo...
                         </p>
-                        <a href="mailto:andrea.pompili1997@gmail.com?subject=Richiesta articolo Migrazione Cloud" class="read-more">
-                            Richiedi articolo completo <i class="fas fa-arrow-right"></i>
+                        <a href="blog/cloud-migration-strategy.html" class="read-more">
+                            Leggi l'articolo completo <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
@@ -318,8 +402,8 @@
                             I 7 errori più comuni che mettono a rischio i dati aziendali e come evitarli. 
                             Consigli pratici e checklist per proteggere la tua attività dai rischi cyber...
                         </p>
-                        <a href="mailto:andrea.pompili1997@gmail.com?subject=Richiesta articolo Sicurezza PMI" class="read-more">
-                            Richiedi articolo completo <i class="fas fa-arrow-right"></i>
+                        <a href="blog/sicurezza-pmi-errori.html" class="read-more">
+                            Leggi l'articolo completo <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
@@ -335,8 +419,8 @@
                             Come implementare Docker in ambiente di produzione con sicurezza e affidabilità. 
                             Configurazioni, monitoring e gestione dei container per applicazioni business-critical...
                         </p>
-                        <a href="mailto:andrea.pompili1997@gmail.com?subject=Richiesta articolo Docker" class="read-more">
-                            Richiedi articolo completo <i class="fas fa-arrow-right"></i>
+                        <a href="#" onclick="showComingSoon()" class="read-more">
+                            Articolo in preparazione <i class="fas fa-clock"></i>
                         </a>
                     </div>
                 </article>
@@ -352,8 +436,8 @@
                             La regola 3-2-1 e le moderne strategie di backup per aziende. 
                             Soluzioni on-premise, cloud e ibride per garantire business continuity e disaster recovery...
                         </p>
-                        <a href="mailto:andrea.pompili1997@gmail.com?subject=Richiesta articolo Backup Strategy" class="read-more">
-                            Richiedi articolo completo <i class="fas fa-arrow-right"></i>
+                        <a href="#" onclick="showComingSoon()" class="read-more">
+                            Articolo in preparazione <i class="fas fa-clock"></i>
                         </a>
                     </div>
                 </article>
@@ -369,8 +453,8 @@
                             Setup completo di un sistema di monitoring professionale. 
                             Dalla raccolta metriche alla visualizzazione: come tenere sotto controllo la tua infrastruttura IT...
                         </p>
-                        <a href="mailto:andrea.pompili1997@gmail.com?subject=Richiesta articolo Monitoring" class="read-more">
-                            Richiedi articolo completo <i class="fas fa-arrow-right"></i>
+                        <a href="#" onclick="showComingSoon()" class="read-more">
+                            Articolo in preparazione <i class="fas fa-clock"></i>
                         </a>
                     </div>
                 </article>
