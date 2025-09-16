@@ -2,854 +2,23 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <title>Andrea Pompili - Consulente IT & Sviluppatore</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #0f172a;
-            --accent: #1e293b;
-            --surface: #f8fafc;
-            --text-primary: #0f172a;
-            --text-secondary: #64748b;
-            --text-inverse: #ffffff;
-            --success: #10b981;
-            --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --gradient: linear-gradient(135deg, var(--primary) 0%, #8b5cf6 50%, #ec4899 100%);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        [data-theme="dark"] {
-            --secondary: #ffffff;
-            --accent: #f1f5f9;
-            --surface: #0f172a;
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
-            --border: #334155;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--surface);
-            overflow-x: hidden;
-        }
-
-        /* Custom Cursor */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.6;
-            transition: transform 0.1s ease;
-            mix-blend-mode: difference;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(248, 250, 252, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: var(--transition);
-        }
-
-        [data-theme="dark"] .navbar {
-            background: rgba(15, 23, 42, 0.8);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            border-radius: 6px;
-            padding: 0.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .theme-toggle:hover {
-            color: var(--primary);
-            border-color: var(--primary);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 2rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-            z-index: -1;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            padding: 0.875rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            padding: 0.875rem 2rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .hero-image {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .profile-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border);
-            text-align: center;
-            animation: fadeInUp 1s ease-out 0.3s both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        [data-theme="dark"] .profile-card {
-            background: var(--accent);
-        }
-
-        .profile-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
-        }
-
-        .profile-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: var(--gradient);
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            font-weight: 700;
-        }
-
-        .profile-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .profile-title {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .profile-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .skill-tag {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        /* About Section */
-        .section {
-            padding: 5rem 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-badge {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-content h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .about-content p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-
-        [data-theme="dark"] .feature {
-            background: var(--accent);
-        }
-
-        .feature:hover {
-            border-color: var(--primary);
-            box-shadow: var(--shadow);
-        }
-
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-        }
-
-        .feature-text {
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        [data-theme="dark"] .service-card {
-            background: var(--accent);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient);
-            transform: scaleX(0);
-            transition: var(--transition);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .service-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .service-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-features {
-            list-style: none;
-        }
-
-        .service-features li {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .service-features li::before {
-            content: '✓';
-            color: var(--success);
-            font-weight: 700;
-        }
-
-        /* Blog Section */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .blog-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-
-        [data-theme="dark"] .blog-card {
-            background: var(--accent);
-        }
-
-        .blog-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .blog-image {
-            height: 200px;
-            background: var(--gradient);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .blog-image::after {
-            content: '📝';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem;
-        }
-
-        .blog-content {
-            padding: 1.5rem;
-        }
-
-        .blog-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .blog-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            line-height: 1.4;
-        }
-
-        .blog-excerpt {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .read-more {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.875rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            transition: var(--transition);
-        }
-
-        .read-more:hover {
-            gap: 0.5rem;
-        }
-
-        /* Admin Panel */
-        .admin-panel {
-            position: fixed;
-            top: 50%;
-            right: -350px;
-            transform: translateY(-50%);
-            width: 320px;
-            background: white;
-            border-radius: 16px 0 0 16px;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-            z-index: 999;
-            padding: 2rem;
-        }
-
-        [data-theme="dark"] .admin-panel {
-            background: var(--accent);
-        }
-
-        .admin-panel.active {
-            right: 0;
-        }
-
-        .admin-toggle {
-            position: absolute;
-            left: -50px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 8px 0 0 8px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: var(--transition);
-        }
-
-        .admin-toggle:hover {
-            background: var(--primary-dark);
-        }
-
-        .admin-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--surface);
-            color: var(--text-primary);
-            font-family: inherit;
-            transition: var(--transition);
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .publish-btn {
-            width: 100%;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.875rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .publish-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--accent);
-            border-top: 1px solid var(--border);
-            padding: 3rem 0 2rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .footer-section p, .footer-section a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            line-height: 1.6;
-        }
-
-        .footer-section a:hover {
-            color: var(--primary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 2rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-container, .about-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .services-grid, .blog-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-stats {
-                justify-content: center;
-            }
-            
-            .about-features {
-                grid-template-columns: 1fr;
-            }
-            
-            .admin-panel {
-                width: 90%;
-                right: -90%;
-            }
-        }
-
-        /* Loading Animation */
-        .loading {
-            opacity: 0;
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body data-theme="light">
     <!-- Navigation -->
@@ -866,8 +35,26 @@
                     <i class="fas fa-moon"></i>
                 </button>
             </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#home" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
+        <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()">Chi Sono</a>
+        <a href="#servizi" class="mobile-nav-link" onclick="closeMobileMenu()">Servizi</a>
+        <a href="#blog" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
+        <a href="#contatti" class="mobile-nav-link" onclick="closeMobileMenu()">Contatti</a>
+        <button class="theme-toggle" onclick="toggleTheme()" style="background: var(--primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; margin-top: 1rem;">
+            <i class="fas fa-moon"></i> <span>Cambia Tema</span>
+        </button>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -910,7 +97,9 @@
             </div>
             <div class="hero-image">
                 <div class="profile-card">
-                    <div class="profile-avatar">AP</div>
+                    <div class="profile-avatar">
+                        <img src="assets/images/Andrea.png" alt="Andrea Pompili" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: white;">
+                    </div>
                     <h3 class="profile-name">Andrea Pompili</h3>
                     <p class="profile-title">IT Consultant & Web Developer</p>
                     <div class="profile-skills">
@@ -939,15 +128,16 @@
                 <div class="about-content">
                     <h3>Un approccio umano alla tecnologia</h3>
                     <p>
-                        Ho iniziato questo viaggio 8 anni fa con una semplice convinzione: 
-                        la tecnologia deve servire le persone, non complicare loro la vita. 
-                        Oggi lavoro con PMI e professionisti per digitalizzare i loro processi 
-                        in modo intelligente e sostenibile.
+                        La mia passione per l'informatica è iniziata durante gli studi universitari e si è 
+                        trasformata in una carriera dedicata ad aiutare aziende e professionisti a 
+                        sfruttare al meglio la tecnologia. Oggi offro consulenza specializzata in 
+                        infrastrutture IT, sviluppo web e trasformazione digitale.
                     </p>
                     <p>
-                        Non sono solo un tecnico: sono un partner che ascolta le tue esigenze, 
-                        traduce i problemi complessi in soluzioni semplici e ti accompagna 
-                        in ogni passo della trasformazione digitale.
+                        Il mio approccio si basa sull'ascolto delle esigenze specifiche di ogni cliente, 
+                        per progettare soluzioni su misura che migliorino l'efficienza operativa e 
+                        supportino la crescita del business. Ogni progetto viene seguito dalla 
+                        progettazione all'implementazione, con supporto continuativo.
                     </p>
                     <a href="#servizi" class="btn-primary">
                         <i class="fas fa-arrow-right"></i>
@@ -1001,15 +191,16 @@
                     </div>
                     <h3 class="service-title">Sviluppo Web & App</h3>
                     <p class="service-description">
-                        Realizzo siti web, applicazioni e e-commerce moderni e performanti. 
-                        Dal design alla messa online, ogni progetto è ottimizzato per i tuoi obiettivi.
+                        Sviluppo soluzioni web moderne utilizzando tecnologie all'avanguardia come React, Node.js e database scalabili. 
+                        Ogni progetto include hosting, SSL, backup automatici e 6 mesi di supporto tecnico incluso.
                     </p>
                     <ul class="service-features">
-                        <li>Siti web responsive e veloci</li>
-                        <li>E-commerce con gestionale integrato</li>
-                        <li>Applicazioni web personalizzate</li>
-                        <li>Ottimizzazione SEO avanzata</li>
-                        <li>Integrazione sistemi esistenti</li>
+                        <li>Siti web responsive (da €800)</li>
+                        <li>E-commerce personalizzati (da €1.500)</li>
+                        <li>Applicazioni web (da €2.000)</li>
+                        <li>Ottimizzazione SEO e performance</li>
+                        <li>Integrazione API e sistemi esistenti</li>
+                        <li>Supporto e manutenzione continuativa</li>
                     </ul>
                 </div>
                 <div class="service-card">
@@ -1018,15 +209,16 @@
                     </div>
                     <h3 class="service-title">Infrastruttura IT</h3>
                     <p class="service-description">
-                        Progetto e gestisco infrastrutture IT scalabili. Dai server fisici al cloud, 
-                        dalla virtualizzazione ai backup automatici.
+                        Progettazione e gestione di infrastrutture IT moderne e sicure. Specializzato in virtualizzazione Proxmox, 
+                        cloud computing e architetture ibride per massimizzare performance e ridurre i costi operativi.
                     </p>
                     <ul class="service-features">
-                        <li>Setup server Proxmox/VMware</li>
-                        <li>Migrazione cloud (AWS, Azure)</li>
-                        <li>Backup e disaster recovery</li>
-                        <li>Monitoraggio proattivo 24/7</li>
-                        <li>Ottimizzazione performance</li>
+                        <li>Setup server Proxmox/VMware (da €1.200)</li>
+                        <li>Migrazione cloud AWS/Azure (da €800)</li>
+                        <li>Backup automatizzati e DR (da €400/mese)</li>
+                        <li>Monitoring 24/7 con alerting (da €200/mese)</li>
+                        <li>Ottimizzazione e scaling automatico</li>
+                        <li>Documentazione completa dell'infrastruttura</li>
                     </ul>
                 </div>
                 <div class="service-card">
@@ -1035,15 +227,16 @@
                     </div>
                     <h3 class="service-title">Assistenza IT</h3>
                     <p class="service-description">
-                        Supporto tecnico completo per la tua azienda. Risolvo problemi, 
-                        formo il personale e mantengo tutto funzionante.
+                        Supporto tecnico professionale per aziende e professionisti. Interventi rapidi, manutenzione preventiva 
+                        e formazione del personale per garantire continuità operativa e ridurre i tempi di inattività.
                     </p>
                     <ul class="service-features">
-                        <li>Helpdesk remoto e on-site</li>
-                        <li>Manutenzione preventiva</li>
-                        <li>Formazione del personale</li>
-                        <li>Gestione parco macchine</li>
-                        <li>Contratti di assistenza</li>
+                        <li>Helpdesk remoto (da €80/ora)</li>
+                        <li>Interventi on-site (da €120/ora)</li>
+                        <li>Contratti assistenza (da €300/mese)</li>
+                        <li>Manutenzione preventiva schedulata</li>
+                        <li>Formazione utenti e admin</li>
+                        <li>Gestione inventario IT</li>
                     </ul>
                 </div>
                 <div class="service-card">
@@ -1052,15 +245,16 @@
                     </div>
                     <h3 class="service-title">Consulenza Strategica</h3>
                     <p class="service-description">
-                        Ti aiuto a definire la strategia digitale più adatta alla tua azienda. 
-                        Analisi, pianificazione e implementazione step by step.
+                        Analisi approfondita delle esigenze tecnologiche e strategia di digitalizzazione personalizzata. 
+                        Accompagno le aziende nella trasformazione digitale con roadmap dettagliate e ROI misurabili.
                     </p>
                     <ul class="service-features">
-                        <li>Audit IT completo</li>
-                        <li>Piano di digitalizzazione</li>
-                        <li>Selezione tecnologie</li>
-                        <li>Analisi costi/benefici</li>
-                        <li>Roadmap implementazione</li>
+                        <li>Audit IT completo (da €600)</li>
+                        <li>Piano digitalizzazione (da €1.000)</li>
+                        <li>Technology assessment e selection</li>
+                        <li>Analisi ROI e business case</li>
+                        <li>Roadmap implementazione dettagliata</li>
+                        <li>Follow-up e revisioni strategiche</li>
                     </ul>
                 </div>
             </div>
@@ -1082,16 +276,67 @@
                     <div class="blog-image"></div>
                     <div class="blog-content">
                         <div class="blog-meta">
-                            <span><i class="fas fa-calendar"></i> 22 Agosto 2025</span>
-                            <span><i class="fas fa-clock"></i> 8 min</span>
+                            <span><i class="fas fa-calendar"></i> 15 Settembre 2025</span>
+                            <span><i class="fas fa-clock"></i> 10 min</span>
                         </div>
                         <h3 class="blog-title">Proxmox vs ESXi: quale hypervisor scegliere nel 2025</h3>
                         <p class="blog-excerpt">
                             Confronto approfondito tra le due piattaforme di virtualizzazione più diffuse. 
-                            Analisi di costi, performance e casi d'uso per aiutarti nella scelta...
+                            Analisi di costi, performance e casi d'uso per aiutarti nella scelta migliore per la tua infrastruttura...
                         </p>
-                        <a href="#" class="read-more">
-                            Leggi l'articolo <i class="fas fa-arrow-right"></i>
+                        <a href="mailto:andrea.pompili1997@gmail.com?subject=Richiesta articolo Proxmox vs ESXi" class="read-more">
+                            Richiedi articolo completo <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-image"></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 8 Settembre 2025</span>
+                            <span><i class="fas fa-clock"></i> 12 min</span>
+                        </div>
+                        <h3 class="blog-title">Migrazione Cloud: strategia e implementazione</h3>
+                        <p class="blog-excerpt">
+                            Guida completa per una migrazione cloud sicura e senza interruzioni. 
+                            Dalla pianificazione all'esecuzione: strategie, tool e best practices per il successo...
+                        </p>
+                        <a href="mailto:andrea.pompili1997@gmail.com?subject=Richiesta articolo Migrazione Cloud" class="read-more">
+                            Richiedi articolo completo <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-image"></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 1 Settembre 2025</span>
+                            <span><i class="fas fa-clock"></i> 8 min</span>
+                        </div>
+                        <h3 class="blog-title">Sicurezza informatica per PMI: errori da evitare</h3>
+                        <p class="blog-excerpt">
+                            I 7 errori più comuni che mettono a rischio i dati aziendali e come evitarli. 
+                            Consigli pratici e checklist per proteggere la tua attività dai rischi cyber...
+                        </p>
+                        <a href="mailto:andrea.pompili1997@gmail.com?subject=Richiesta articolo Sicurezza PMI" class="read-more">
+                            Richiedi articolo completo <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-image"></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 25 Agosto 2025</span>
+                            <span><i class="fas fa-clock"></i> 15 min</span>
+                        </div>
+                        <h3 class="blog-title">Docker in produzione: setup e best practices</h3>
+                        <p class="blog-excerpt">
+                            Come implementare Docker in ambiente di produzione con sicurezza e affidabilità. 
+                            Configurazioni, monitoring e gestione dei container per applicazioni business-critical...
+                        </p>
+                        <a href="mailto:andrea.pompili1997@gmail.com?subject=Richiesta articolo Docker" class="read-more">
+                            Richiedi articolo completo <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
@@ -1100,15 +345,15 @@
                     <div class="blog-content">
                         <div class="blog-meta">
                             <span><i class="fas fa-calendar"></i> 18 Agosto 2025</span>
-                            <span><i class="fas fa-clock"></i> 12 min</span>
+                            <span><i class="fas fa-clock"></i> 6 min</span>
                         </div>
-                        <h3 class="blog-title">Come migrare al cloud senza perdere dati (e sonno)</h3>
+                        <h3 class="blog-title">Backup strategy: come proteggere i tuoi dati</h3>
                         <p class="blog-excerpt">
-                            Guida step-by-step per una migrazione cloud sicura e senza interruzioni. 
-                            Strategie, tool e checklist per un passaggio senza stress...
+                            La regola 3-2-1 e le moderne strategie di backup per aziende. 
+                            Soluzioni on-premise, cloud e ibride per garantire business continuity e disaster recovery...
                         </p>
-                        <a href="#" class="read-more">
-                            Leggi l'articolo <i class="fas fa-arrow-right"></i>
+                        <a href="mailto:andrea.pompili1997@gmail.com?subject=Richiesta articolo Backup Strategy" class="read-more">
+                            Richiedi articolo completo <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
@@ -1116,16 +361,16 @@
                     <div class="blog-image"></div>
                     <div class="blog-content">
                         <div class="blog-meta">
-                            <span><i class="fas fa-calendar"></i> 15 Agosto 2025</span>
-                            <span><i class="fas fa-clock"></i> 6 min</span>
+                            <span><i class="fas fa-calendar"></i> 10 Agosto 2025</span>
+                            <span><i class="fas fa-clock"></i> 9 min</span>
                         </div>
-                        <h3 class="blog-title">5 errori che le PMI fanno con la sicurezza informatica</h3>
+                        <h3 class="blog-title">Monitoring e alerting con Grafana e Prometheus</h3>
                         <p class="blog-excerpt">
-                            Gli errori più comuni che mettono a rischio i dati aziendali e come evitarli. 
-                            Consigli pratici per proteggere la tua attività...
+                            Setup completo di un sistema di monitoring professionale. 
+                            Dalla raccolta metriche alla visualizzazione: come tenere sotto controllo la tua infrastruttura IT...
                         </p>
-                        <a href="#" class="read-more">
-                            Leggi l'articolo <i class="fas fa-arrow-right"></i>
+                        <a href="mailto:andrea.pompili1997@gmail.com?subject=Richiesta articolo Monitoring" class="read-more">
+                            Richiedi articolo completo <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>
@@ -1204,200 +449,7 @@
         </div>
     </footer>
 
-    <script>
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Active navigation link
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (scrollY >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Theme toggle
-        function toggleTheme() {
-            const body = document.body;
-            const themeIcon = document.querySelector('.theme-toggle i');
-            
-            if (body.getAttribute('data-theme') === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fas fa-sun';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-                themeIcon.className = 'fas fa-moon';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        // Load saved theme
-        window.addEventListener('load', () => {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', savedTheme);
-            const themeIcon = document.querySelector('.theme-toggle i');
-            themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        });
-
-        // Admin panel toggle
-        function toggleAdmin() {
-            const panel = document.getElementById('adminPanel');
-            panel.classList.toggle('active');
-        }
-
-        // Publish article
-        function publishArticle() {
-            const title = document.getElementById('articleTitle').value.trim();
-            const content = document.getElementById('articleContent').value.trim();
-            
-            if (!title || !content) {
-                alert('⚠️ Inserisci titolo e contenuto dell\'articolo');
-                return;
-            }
-            
-            // Create new blog card
-            const blogContainer = document.getElementById('blogContainer');
-            const article = document.createElement('article');
-            article.className = 'blog-card loading';
-            
-            const readTime = Math.max(1, Math.ceil(content.split(' ').length / 200));
-            const today = new Date().toLocaleDateString('it-IT');
-            
-            article.innerHTML = `
-                <div class="blog-image"></div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="fas fa-calendar"></i> ${today}</span>
-                        <span><i class="fas fa-clock"></i> ${readTime} min</span>
-                    </div>
-                    <h3 class="blog-title">${title}</h3>
-                    <p class="blog-excerpt">
-                        ${content.substring(0, 120)}...
-                    </p>
-                    <a href="#" class="read-more">
-                        Leggi l'articolo <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            `;
-            
-            blogContainer.insertBefore(article, blogContainer.firstChild);
-            
-            // Clear form
-            document.getElementById('articleTitle').value = '';
-            document.getElementById('articleContent').value = '';
-            
-            // Close admin panel
-            document.getElementById('adminPanel').classList.remove('active');
-            
-            // Show success notification
-            showNotification('✅ Articolo pubblicato con successo!', 'success');
-            
-            // Scroll to blog section
-            document.getElementById('blog').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Notification system
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: ${type === 'success' ? 'var(--success)' : 'var(--primary)'};
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                box-shadow: var(--shadow-lg);
-                z-index: 10000;
-                font-weight: 500;
-                animation: slideInRight 0.3s ease-out;
-                max-width: 300px;
-            `;
-            
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOutRight 0.3s ease-out forwards';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
-
-        // Add CSS animations for notifications
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes slideOutRight {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Loading animation for elements
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const animatedElements = document.querySelectorAll('.service-card, .blog-card, .feature');
-            animatedElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                observer.observe(el);
-            });
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>
