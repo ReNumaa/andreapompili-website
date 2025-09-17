@@ -9,6 +9,13 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <title>Andrea Pompili - Consulente IT & Sviluppatore</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/Andrea.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/Andrea.png">
+    <link rel="apple-touch-icon" href="assets/images/Andrea.png">
+    <link rel="shortcut icon" href="assets/images/Andrea.png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <!-- Custom CSS -->
@@ -29,7 +36,7 @@
                 <a href="#home" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">Chi Sono</a>
                 <a href="#servizi" class="nav-link">Servizi</a>
-                <a href="#blog" class="nav-link">Blog</a>
+                <a href="blog/index.html" class="nav-link">Blog</a>
                 <a href="#contatti" class="nav-link">Contatti</a>
             </div>
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
@@ -38,26 +45,45 @@
         </div>
     </nav>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" onclick="toggleMobileMenu()">
             <i class="fas fa-times"></i>
         </button>
-        <a href="#home" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
-        <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()">Chi Sono</a>
-        <a href="#servizi" class="mobile-nav-link" onclick="closeMobileMenu()">Servizi</a>
-        <a href="#blog" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
-        <a href="#contatti" class="mobile-nav-link" onclick="closeMobileMenu()">Contatti</a>
+
+        <div class="mobile-menu-header">
+            <h3>Menù</h3>
+            <p>Andrea Pompili</p>
+        </div>
+
+        <nav class="mobile-menu-nav">
+            <a href="#home" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
+            <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()">Chi Sono</a>
+            <a href="#servizi" class="mobile-nav-link" onclick="closeMobileMenu()">Servizi</a>
+            <a href="blog/index.html" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
+            <a href="#contatti" class="mobile-nav-link" onclick="closeMobileMenu()">Contatti</a>
+        </nav>
+
+        <div class="mobile-menu-footer">
+            <small>© 2025 Andrea Pompili</small>
+        </div>
     </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-container">
-            <div class="hero-badge">
+            <div class="hero-badge hero-badge-mobile">
                 <i class="fas fa-rocket"></i>
                 Disponibile per nuovi progetti
             </div>
             <div class="hero-content">
+                <div class="hero-badge hero-badge-desktop">
+                    <i class="fas fa-rocket"></i>
+                    Disponibile per nuovi progetti
+                </div>
                 <h1 class="hero-title">Trasformo idee in soluzioni digitali</h1>
                 <p class="hero-subtitle">
                     Sono Andrea, consulente IT con oltre 8 anni di esperienza. 
@@ -112,10 +138,6 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Chi sono</span>
-                <h2 class="section-title">La mia storia</h2>
-                <p class="section-subtitle">
-                    Dalla passione per la tecnologia a consulente IT di fiducia per aziende in tutta Italia
-                </p>
             </div>
             <div class="about-grid">
                 <div class="about-content">
@@ -172,10 +194,6 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Servizi</span>
-                <h2 class="section-title">Come posso aiutarti</h2>
-                <p class="section-subtitle">
-                    Soluzioni complete per la tua crescita digitale, dall'idea alla realizzazione
-                </p>
             </div>
             <!-- Desktop Services Grid -->
             <div class="services-grid">
@@ -231,24 +249,6 @@
                         <li>Manutenzione preventiva schedulata</li>
                         <li>Formazione utenti e admin</li>
                         <li>Gestione inventario IT</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 class="service-title">Consulenza Strategica</h3>
-                    <p class="service-description">
-                        Analisi approfondita delle esigenze tecnologiche e strategia di digitalizzazione personalizzata. 
-                        Accompagno le aziende nella trasformazione digitale con roadmap dettagliate e ROI misurabili.
-                    </p>
-                    <ul class="service-features">
-                        <li>Audit IT completo (da €600)</li>
-                        <li>Piano digitalizzazione (da €1.000)</li>
-                        <li>Technology assessment e selection</li>
-                        <li>Analisi ROI e business case</li>
-                        <li>Roadmap implementazione dettagliata</li>
-                        <li>Follow-up e revisioni strategiche</li>
                     </ul>
                 </div>
             </div>
@@ -307,24 +307,13 @@
                         </ul>
                     </div>
                     
-                    <div class="service-card-mobile">
-                        <div class="service-icon-mobile">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h3 class="service-title-mobile">Consulenza Strategica</h3>
-                        <div class="service-price-mobile">da €600</div>
-                        <p class="service-description-mobile">
-                            Analisi e strategia di digitalizzazione con roadmap dettagliate e ROI misurabili.
-                        </p>
-                        <ul class="service-features-mobile">
-                            <li>Audit IT completo</li>
-                            <li>Piano digitalizzazione</li>
-                            <li>Technology assessment</li>
-                            <li>ROI e business case</li>
-                        </ul>
-                    </div>
                 </div>
-                
+
+                <div class="scroll-dots">
+                    <div class="scroll-dot active"></div>
+                    <div class="scroll-dot"></div>
+                    <div class="scroll-dot"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -334,10 +323,6 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Blog</span>
-                <h2 class="section-title">Insights & Guide</h2>
-                <p class="section-subtitle">
-                    Condivido esperienze, tutorial e tendenze del mondo IT per aiutarti a rimanere aggiornato
-                </p>
             </div>
             <div class="blog-grid" id="blogContainer">
                 <article class="blog-card">
@@ -452,10 +437,6 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Contatti</span>
-                <h2 class="section-title">Iniziamo a collaborare</h2>
-                <p class="section-subtitle">
-                    Hai un progetto in mente? Contattami per una consulenza gratuita e scopri come posso aiutarti a raggiungere i tuoi obiettivi
-                </p>
             </div>
             <div class="contact-grid">
                 <div class="contact-info">
@@ -526,7 +507,6 @@
                                 <option value="sviluppo-web">Sviluppo Web & App</option>
                                 <option value="infrastruttura">Infrastruttura IT</option>
                                 <option value="assistenza">Assistenza IT</option>
-                                <option value="consulenza">Consulenza Strategica</option>
                                 <option value="altro">Altro</option>
                             </select>
                         </div>
@@ -566,7 +546,6 @@
                     <p><a href="#servizi">Sviluppo Web & App</a></p>
                     <p><a href="#servizi">Infrastruttura IT</a></p>
                     <p><a href="#servizi">Assistenza Tecnica</a></p>
-                    <p><a href="#servizi">Consulenza Strategica</a></p>
                 </div>
                 <div class="footer-section">
                     <h4>Contatti</h4>
