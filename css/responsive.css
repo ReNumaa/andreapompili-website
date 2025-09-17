@@ -48,8 +48,19 @@
         padding: 3rem 0;
     }
 
+    .section-header {
+        margin-bottom: 1rem;
+    }
+
+    .section-badge {
+        margin-bottom: 0.3rem;
+        font-size: 1.4rem;
+        padding: 0.6rem 2rem;
+    }
+
     .section-title {
         font-size: 2rem;
+        margin-bottom: 0.3rem;
     }
 
     .section-subtitle {

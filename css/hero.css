@@ -68,6 +68,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    overflow: visible;
+    padding-bottom: 0.3rem;
 }
 
 .hero-subtitle {
@@ -180,6 +182,41 @@
     border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
+/* Desktop - Reset any mobile overrides */
+@media (min-width: 769px) {
+    .hero-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .hero-content {
+        display: block;
+        order: unset;
+    }
+
+    .hero-badge-mobile {
+        display: none !important;
+    }
+
+    .hero-badge-desktop {
+        order: unset;
+        margin-bottom: 1.5rem;
+        align-self: unset;
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+        background: rgba(99, 102, 241, 0.1);
+        backdrop-filter: unset;
+        display: inline-flex;
+    }
+
+    .hero-image {
+        order: unset;
+        margin-bottom: unset;
+    }
+}
+
 /* Mobile Hero Section - Modern Portfolio Style */
 @media (max-width: 768px) {
     .hero {
@@ -210,7 +247,11 @@
     }
 
     /* Mobile Badge Section - Move badge to top */
-    .hero-badge {
+    .hero-badge-desktop {
+        display: none !important;
+    }
+
+    .hero-badge-mobile {
         order: -2;
         margin-bottom: 0.5rem;
         align-self: center;
