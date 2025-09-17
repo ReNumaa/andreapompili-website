@@ -179,3 +179,305 @@
     font-weight: 500;
     border: 1px solid rgba(99, 102, 241, 0.2);
 }
+
+/* Mobile Hero Section - Modern Portfolio Style */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 100vh;
+        padding: 80px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+    }
+
+    .hero::before {
+        background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 70%),
+                    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem 1rem;
+        text-align: center;
+        max-width: 100%;
+        min-height: calc(100vh - 80px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Mobile Badge Section - Move badge to top */
+    .hero-badge {
+        order: -2;
+        margin-bottom: 0.5rem;
+        align-self: center;
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        background: rgba(99, 102, 241, 0.15);
+        backdrop-filter: blur(5px);
+    }
+
+    /* Mobile Profile Section - Modern Chromeless Design */
+    .hero-image {
+        order: -1;
+        margin-bottom: 0.5rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .profile-card {
+        background: transparent;
+        border-radius: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+        transform: none;
+        animation: mobileProfileIn 1.2s ease-out;
+        max-width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .profile-card::before {
+        display: none;
+    }
+
+    .profile-avatar {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 0.7rem auto;
+        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+        border: 5px solid rgba(255, 255, 255, 0.9);
+        position: relative;
+        overflow: hidden;
+        background: var(--gradient);
+    }
+
+    [data-theme="dark"] .profile-avatar {
+        border: 6px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+    }
+
+    .profile-avatar::before {
+        content: '';
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        background: var(--gradient);
+        border-radius: 50%;
+        z-index: -1;
+        animation: avatarPulse 4s ease-in-out infinite;
+    }
+
+    .profile-name {
+        font-size: 2rem;
+        font-weight: 900;
+        margin-bottom: 0.3rem;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.02em;
+    }
+
+    .profile-title {
+        font-size: 1rem;
+        margin-bottom: 0.7rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        opacity: 0.9;
+    }
+
+    .profile-skills {
+        gap: 0.5rem;
+        margin-bottom: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .skill-tag {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 20px;
+        backdrop-filter: blur(5px);
+        transition: all 0.3s ease;
+    }
+
+    .skill-tag:hover {
+        background: rgba(99, 102, 241, 0.15);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(99, 102, 241, 0.2);
+    }
+
+    /* Mobile Content Section */
+    .hero-content {
+        order: 2;
+        animation: mobileContentIn 1.2s ease-out 0.3s both;
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-bottom: 0.8rem;
+        font-weight: 800;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.5;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+        border-radius: 12px;
+        font-weight: 600;
+    }
+
+    .hero-stats {
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .stat {
+        min-width: 80px;
+        padding: 0.5rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+
+    @keyframes mobileProfileIn {
+        0% {
+            opacity: 0;
+            transform: translateY(-30px) scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    @keyframes mobileContentIn {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes avatarPulse {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+        50% {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    .hero {
+        padding: 70px 0 0 0;
+    }
+
+    .hero-container {
+        padding: 1.5rem 0.75rem;
+        min-height: calc(100vh - 70px);
+    }
+
+    .profile-card {
+        max-width: 100%;
+        padding: 0;
+        border-radius: 0;
+    }
+
+    .profile-avatar {
+        width: 140px;
+        height: 140px;
+        border-width: 4px;
+    }
+
+    .profile-name {
+        font-size: 1.9rem;
+    }
+
+    .profile-title {
+        font-size: 1rem;
+    }
+
+    .profile-skills {
+        max-width: 280px;
+    }
+
+    .hero-title {
+        font-size: 1.9rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        max-width: 95%;
+    }
+
+    .hero-buttons {
+        max-width: 260px;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 0.9rem;
+        font-size: 0.9rem;
+    }
+
+    .stat {
+        min-width: 70px;
+    }
+
+    .stat-number {
+        font-size: 1.3rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+}
