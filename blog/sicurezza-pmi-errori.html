@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sicurezza informatica per PMI: errori da evitare | Andrea Pompili</title>
+    <meta name="description" content="I 7 errori più comuni che mettono a rischio i dati aziendali e come evitarli. Consigli pratici per PMI.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/Andrea.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/Andrea.png">
+    <link rel="apple-touch-icon" href="../assets/images/Andrea.png">
+    <link rel="shortcut icon" href="../assets/images/Andrea.png">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    
+    <style>
+        .blog-header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+        
+        .blog-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            line-height: 1.8;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 6rem;
+            left: 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 100;
+            transition: var(--transition);
+        }
+        
+        .error-box {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 5px solid #ef4444;
+            box-shadow: var(--shadow);
+        }
+        
+        [data-theme="dark"] .error-box {
+            background: var(--accent);
+        }
+        
+        .error-number {
+            background: #ef4444;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .solution-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        
+        .solution-box strong {
+            color: var(--success);
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <header class="blog-header">
+        <div class="container">
+            <h1>Sicurezza informatica per PMI: errori da evitare</h1>
+            <div style="display: flex; gap: 2rem; justify-content: center; margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">
+                <span><i class="fas fa-calendar"></i> 1 Settembre 2025</span>
+                <span><i class="fas fa-clock"></i> 8 min di lettura</span>
+                <span><i class="fas fa-user"></i> Andrea Pompili</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="blog-content">
+        <p class="lead">
+            La sicurezza informatica non è più un lusso ma una necessità per ogni azienda. 
+            Tuttavia, molte PMI commettono errori che possono costare molto caro. Ecco i 7 errori più comuni.
+        </p>
+
+        <div class="error-box">
+            <div class="error-number">1</div>
+            <h3>Password deboli e riutilizzate</h3>
+            <p>
+                Utilizzare password semplici come "123456" o "password" è ancora incredibilmente comune. 
+                Peggio ancora è riutilizzare la stessa password per più servizi.
+            </p>
+            <div class="solution-box">
+                <strong>Soluzione:</strong> Implementare un password manager aziendale e politiche di password forti. 
+                Attivare l'autenticazione a due fattori ovunque possibile.
+            </div>
+        </div>
+
+        <div class="error-box">
+            <div class="error-number">2</div>
+            <h3>Mancanza di backup automatici</h3>
+            <p>
+                "I nostri dati sono sul server, siamo sicuri." Questo pensiero ha rovinato molte aziende. 
+                Un singolo guasto hardware o un attacco ransomware può cancellare anni di lavoro.
+            </p>
+            <div class="solution-box">
+                <strong>Soluzione:</strong> Implementare la regola 3-2-1: 3 copie dei dati, su 2 supporti diversi, 
+                con 1 copia off-site. Testare regolarmente i restore.
+            </div>
+        </div>
+
+        <div class="error-box">
+            <div class="error-number">3</div>
+            <h3>Software non aggiornato</h3>
+            <p>
+                Rimandare gli aggiornamenti "perché funziona tutto" espone l'azienda a vulnerabilità note. 
+                Gli hacker sanno esattamente come sfruttare software obsoleto.
+            </p>
+            <div class="solution-box">
+                <strong>Soluzione:</strong> Implementare una politica di patch management automatizzato. 
+                Programmare finestre di manutenzione regolari per gli aggiornamenti critici.
+            </div>
+        </div>
+
+        <div class="error-box">
+            <div class="error-number">4</div>
+            <h3>Accessi non controllati</h3>
+            <p>
+                Dare a tutti accesso a tutto "per semplicità" è un errore costoso. 
+                Un dipendente scontento o un account compromesso possono fare danni enormi.
+            </p>
+            <div class="solution-box">
+                <strong>Soluzione:</strong> Applicare il principio del "minimo privilegio". 
+                Ogni utente deve avere accesso solo a ciò che serve per il suo lavoro.
+            </div>
+        </div>
+
+        <div class="error-box">
+            <div class="error-number">5</div>
+            <h3>Email non protette</h3>
+            <p>
+                Il 95% degli attacci informatici inizia con una email di phishing. 
+                Non proteggere la posta elettronica è come lasciare la porta di casa aperta.
+            </p>
+            <div class="solution-box">
+                <strong>Soluzione:</strong> Implementare filtri anti-spam avanzati, sandbox per allegati, 
+                e soprattutto formare i dipendenti a riconoscere email sospette.
+            </div>
+        </div>
+
+        <div class="error-box">
+            <div class="error-number">6</div>
+            <h3>BYOD senza controllo</h3>
+            <p>
+                Permettere ai dipendenti di usare i propri dispositivi senza politiche di sicurezza 
+                crea buchi enormi nella sicurezza aziendale.
+            </p>
+            <div class="solution-box">
+                <strong>Soluzione:</strong> Implementare Mobile Device Management (MDM) e politiche BYOD chiare. 
+                Separare dati personali e aziendali sui dispositivi.
+            </div>
+        </div>
+
+        <div class="error-box">
+            <div class="error-number">7</div>
+            <h3>Mancanza di formazione</h3>
+            <p>
+                La tecnologia da sola non basta. I dipendenti sono spesso l'anello più debole della catena di sicurezza, 
+                ma anche la prima linea di difesa se formati correttamente.
+            </p>
+            <div class="solution-box">
+                <strong>Soluzione:</strong> Organizzare sessioni di formazione regolari sulla sicurezza informatica. 
+                Fare simulazioni di phishing per testare la preparazione del team.
+            </div>
+        </div>
+
+        <h2>Il Costo degli Errori</h2>
+        <p>
+            Secondo il Rapporto Clusit 2025, il costo medio di un data breach per le PMI italiane è di €180.000. 
+            Ma oltre al danno economico diretto, c'è la perdita di reputazione, la fiducia dei clienti e 
+            le possibili sanzioni GDPR.
+        </p>
+
+        <h2>Come Iniziare?</h2>
+        <p>
+            La sicurezza informatica può sembrare complessa, ma iniziare con le basi è già un enorme passo avanti:
+        </p>
+
+        <ol>
+            <li><strong>Audit di sicurezza:</strong> Valutare lo stato attuale</li>
+            <li><strong>Backup automatici:</strong> Proteggere i dati critici</li>
+            <li><strong>Antivirus e firewall:</strong> Difese perimetrali</li>
+            <li><strong>Formazione del personale:</strong> La prima linea di difesa</li>
+            <li><strong>Politiche di sicurezza:</strong> Regole chiare per tutti</li>
+        </ol>
+
+        <h2>Conclusioni</h2>
+        <p>
+            La sicurezza informatica non è un costo, ma un investimento. Prevenire è sempre più economico 
+            che rimediare. Non aspettare di essere attaccati per iniziare a proteggerti.
+        </p>
+
+        <div style="background: var(--surface); border-radius: 12px; padding: 2rem; margin: 3rem 0; text-align: center; border: 1px solid var(--border);">
+            <h3 style="margin-bottom: 1rem;"><i class="fas fa-shield-alt"></i> Vuoi proteggere la tua azienda?</h3>
+            <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+                Offro audit di sicurezza e consulenza per implementare le migliori pratiche di cybersecurity.
+            </p>
+            <a href="../index.html#contatti" class="btn-primary">
+                <i class="fas fa-calendar"></i>
+                Richiedi un audit di sicurezza
+            </a>
+        </div>
+    </article>
+
+    <script src="../js/main.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        
+        // Page loaded
+    </script>
+</body>
+</html>

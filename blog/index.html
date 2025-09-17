@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <title>Blog - Andrea Pompili - Consulente IT & Sviluppatore</title>
+    <meta name="description" content="Articoli, guide e insights sul mondo IT. Virtualizzazione, cloud, cybersecurity e best practices per aziende e professionisti.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/Andrea.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/Andrea.png">
+    <link rel="apple-touch-icon" href="../assets/images/Andrea.png">
+    <link rel="shortcut icon" href="../assets/images/Andrea.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Main Site CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <!-- Blog Specific CSS -->
+    <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Andrea Pompili</a>
+            <div class="nav-links">
+                <a href="../index.html#home" class="nav-link">Home</a>
+                <a href="../index.html#about" class="nav-link">Chi Sono</a>
+                <a href="../index.html#servizi" class="nav-link">Servizi</a>
+                <a href="./" class="nav-link active">Blog</a>
+                <a href="../index.html#contatti" class="nav-link">Contatti</a>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="mobile-menu-header">
+            <h3>Menù</h3>
+            <p>Andrea Pompili</p>
+        </div>
+
+        <nav class="mobile-menu-nav">
+            <a href="../index.html#home" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
+            <a href="../index.html#about" class="mobile-nav-link" onclick="closeMobileMenu()">Chi Sono</a>
+            <a href="../index.html#servizi" class="mobile-nav-link" onclick="closeMobileMenu()">Servizi</a>
+            <a href="./" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
+            <a href="../index.html#contatti" class="mobile-nav-link" onclick="closeMobileMenu()">Contatti</a>
+        </nav>
+
+        <div class="mobile-menu-footer">
+            <small>© 2025 Andrea Pompili</small>
+        </div>
+    </div>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="container">
+            <h1 class="blog-header-title">Insights & Guide IT</h1>
+        </div>
+    </section>
+
+    <!-- Blog Filters -->
+    <section class="blog-filters-section">
+        <div class="container">
+            <!-- Desktop Filters -->
+            <div class="blog-filters desktop-filters">
+                <div class="filter-container">
+                    <div class="filter-group">
+                        <label class="filter-label">Mese:</label>
+                        <select id="monthFilter" class="filter-select">
+                            <option value="">Tutti i mesi</option>
+                            <option value="2025-09">Settembre 2025</option>
+                            <option value="2025-08">Agosto 2025</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Tag:</label>
+                        <select id="tagFilter" class="filter-select">
+                            <option value="">Tutti i tag</option>
+                            <!-- Tags will be populated by JavaScript -->
+                        </select>
+                    </div>
+
+                    <button class="clear-filters-btn" id="clearFilters">
+                        <i class="fas fa-times"></i>
+                        Pulisci filtri
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Filter Button -->
+            <div class="mobile-filter-button">
+                <button class="filter-toggle-btn" id="mobileFilterToggle">
+                    <i class="fas fa-filter"></i>
+                    Filtri
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Filter Popup -->
+    <div class="filter-popup-overlay" id="filterPopupOverlay">
+        <div class="filter-popup">
+            <div class="filter-popup-header">
+                <h3>Filtri</h3>
+                <button class="filter-popup-close" id="filterPopupClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="filter-popup-content">
+                <div class="filter-group">
+                    <label class="filter-label">Mese:</label>
+                    <select id="monthFilterMobile" class="filter-select">
+                        <option value="">Tutti i mesi</option>
+                        <option value="2025-09">Settembre 2025</option>
+                        <option value="2025-08">Agosto 2025</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Tag:</label>
+                    <select id="tagFilterMobile" class="filter-select">
+                        <option value="">Tutti i tag</option>
+                        <!-- Tags will be populated by JavaScript -->
+                    </select>
+                </div>
+            </div>
+            <div class="filter-popup-actions">
+                <button class="clear-filters-btn" id="clearFiltersMobile">
+                    <i class="fas fa-times"></i>
+                    Pulisci filtri
+                </button>
+                <button class="apply-filters-btn" id="applyFiltersMobile">
+                    <i class="fas fa-check"></i>
+                    Applica
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Content -->
+    <section class="blog-content">
+        <div class="container">
+
+            <!-- Featured Articles -->
+            <div class="featured-section" id="featuredSection">
+                <h2 class="featured-title">
+                    Articoli in evidenza
+                </h2>
+                <div class="featured-grid" id="featuredGrid">
+                    <!-- Featured articles will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- All Articles -->
+            <div class="articles-section">
+                <h2 class="articles-title" id="articlesTitle">Tutti gli articoli</h2>
+                <div class="articles-grid" id="articlesGrid">
+                    <!-- Articles will be populated by JavaScript -->
+                </div>
+
+                <!-- No Results -->
+                <div class="no-results" id="noResults" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <h3>Nessun articolo trovato</h3>
+                    <p>Prova a modificare i filtri di ricerca o a cercare con parole chiave diverse.</p>
+                    <button class="btn-primary" onclick="clearAllFilters()">
+                        <i class="fas fa-refresh"></i>
+                        Mostra tutti gli articoli
+                    </button>
+                </div>
+
+                <!-- Loading -->
+                <div class="loading" id="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Caricamento articoli...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Andrea Pompili</h4>
+                    <p>
+                        Consulente IT specializzato in soluzioni digitali per PMI.
+                        Trasformo le sfide tecnologiche in opportunità di crescita.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/andrea-pompili-it" target="_blank" rel="noopener" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/ReNumaa" target="_blank" rel="noopener" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="mailto:andrea.pompili1997@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                        <a href="https://wa.me/393123456789" target="_blank" rel="noopener" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Servizi</h4>
+                    <p><a href="../#servizi">Sviluppo Web & App</a></p>
+                    <p><a href="../#servizi">Infrastruttura IT</a></p>
+                    <p><a href="../#servizi">Assistenza Tecnica</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <p><i class="fas fa-envelope"></i> andrea.pompili1997@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +39 312 345 6789</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Italia - Disponibile per progetti remoti</p>
+                    <p><i class="fas fa-clock"></i> Lun-Ven 9:00-18:00 | Emergenze H24</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Blog</h4>
+                    <p><a href="./">Tutti gli articoli</a></p>
+                    <p><a href="./?tag=virtualizzazione">Virtualizzazione</a></p>
+                    <p><a href="./?tag=cloud">Cloud Computing</a></p>
+                    <p><a href="./?tag=security">Cybersecurity</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Andrea Pompili - Consulente IT. Tutti i diritti riservati. |
+                <a href="mailto:andrea.pompili1997@gmail.com?subject=Privacy Policy">Privacy Policy</a> |
+                <a href="mailto:andrea.pompili1997@gmail.com?subject=Termini di Servizio">Termini di Servizio</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="js/blog.js"></script>
+</body>
+</html>
