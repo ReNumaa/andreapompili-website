@@ -1,14 +1,24 @@
 // Main JavaScript for Andrea Pompili Portfolio
 
-// Smooth scrolling for navigation
+// Smooth scrolling for navigation with navbar offset
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            const isMobile = window.innerWidth <= 768;
+
+            let targetPosition;
+            if (isMobile) {
+                targetPosition = target.offsetTop - navbarHeight + 20; // Mobile: scroll up more
+            } else {
+                targetPosition = target.offsetTop - navbarHeight + 50; // Desktop: scroll up even more
+            }
+
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
             });
         }
     });
@@ -18,11 +28,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+
     let current = '';
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 200) {
+        const sectionTop = section.offsetTop - navbarHeight - 20;
+        if (scrollY >= sectionTop) {
             current = section.getAttribute('id');
         }
     });
@@ -38,109 +49,64 @@ window.addEventListener('scroll', () => {
 // Mobile menu toggle
 function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+    const isActive = mobileMenu.classList.contains('active');
+
     mobileMenu.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+    mobileMenuOverlay.classList.toggle('active');
+
+    document.body.style.overflow = !isActive ? 'hidden' : 'auto';
 }
 
 function closeMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
     mobileMenu.classList.remove('active');
+    mobileMenuOverlay.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
-// Services page-like scroll functionality
+// Services smooth scroll functionality
 function initServicesScroll() {
     const servicesScroll = document.getElementById('servicesScroll');
     const scrollDots = document.querySelectorAll('.scroll-dot');
-    const cards = document.querySelectorAll('.service-card-mobile');
     
-    if (!servicesScroll || !scrollDots.length || !cards.length) return;
+    if (!servicesScroll || !scrollDots.length) return;
     
-    totalCards = cards.length;
-    currentCardIndex = 0;
-    
-    function updateCards() {
-        cards.forEach((card, index) => {
-            card.classList.remove('active', 'previous', 'next');
-            
-            if (index === currentCardIndex) {
-                card.classList.add('active');
-            } else if (index < currentCardIndex) {
-                card.classList.add('previous');
-            } else {
-                card.classList.add('next');
-            }
-        });
-        
-        // Update dots
+    servicesScroll.addEventListener('scroll', () => {
+        const cardWidth = 300 + 24; // updated card width + gap
+        const scrollLeft = servicesScroll.scrollLeft;
+        const activeIndex = Math.round(scrollLeft / cardWidth);
+
+        // Update dots (now 3 cards)
         scrollDots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentCardIndex);
+            dot.classList.toggle('active', index === activeIndex);
         });
-    }
+    });
     
-    function goToCard(index) {
-        if (index >= 0 && index < cards.length) {
-            currentCardIndex = index;
-            updateCards();
-        }
-    }
-    
-    // Touch swipe handling
+    // Enhanced touch handling for smooth scrolling
     let startX = 0;
-    let startY = 0;
-    let isSwipe = false;
+    let scrollStart = 0;
     
     servicesScroll.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        isSwipe = false;
+        scrollStart = servicesScroll.scrollLeft;
     });
     
     servicesScroll.addEventListener('touchmove', (e) => {
-        if (!startX || !startY) return;
+        if (!startX) return;
         
         const currentX = e.touches[0].clientX;
-        const currentY = e.touches[0].clientY;
-        const diffX = Math.abs(startX - currentX);
-        const diffY = Math.abs(startY - currentY);
-        
-        // Detect horizontal swipe
-        if (diffX > diffY && diffX > 30) {
-            isSwipe = true;
-            e.preventDefault();
-        }
+        const diff = startX - currentX;
+        servicesScroll.scrollLeft = scrollStart + diff;
     });
     
-    servicesScroll.addEventListener('touchend', (e) => {
-        if (!startX || !isSwipe) return;
-        
-        const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-        
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                // Swipe left - next card
-                goToCard(currentIndex + 1);
-            } else {
-                // Swipe right - previous card
-                goToCard(currentIndex - 1);
-            }
-        }
-        
+    servicesScroll.addEventListener('touchend', () => {
         startX = 0;
-        startY = 0;
-        isSwipe = false;
+        scrollStart = 0;
     });
-    
-    // Dot navigation
-    scrollDots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            goToCard(index);
-        });
-    });
-    
-    // Initialize first card as active
-    updateCards();
 }
 
 // Initialize on load
@@ -262,36 +228,6 @@ function showComingSoon() {
     showNotification('📝 Articolo in preparazione! Sarà disponibile presto.', 'info');
 }
 
-// Global navigation function for cards
-let currentCardIndex = 0;
-let totalCards = 0;
-
-function navigateCard(direction) {
-    const cards = document.querySelectorAll('.service-card-mobile');
-    if (!cards.length) return;
-    
-    totalCards = cards.length;
-    currentCardIndex = Math.max(0, Math.min(totalCards - 1, currentCardIndex + direction));
-    
-    // Update cards
-    cards.forEach((card, index) => {
-        card.classList.remove('active', 'previous', 'next');
-        
-        if (index === currentCardIndex) {
-            card.classList.add('active');
-        } else if (index < currentCardIndex) {
-            card.classList.add('previous');
-        } else {
-            card.classList.add('next');
-        }
-    });
-    
-    // Update dots
-    const scrollDots = document.querySelectorAll('.scroll-dot');
-    scrollDots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentCardIndex);
-    });
-}
 
 // Make functions available globally
 window.toggleMobileMenu = toggleMobileMenu;
@@ -300,4 +236,3 @@ window.toggleAdmin = toggleAdmin;
 window.publishArticle = publishArticle;
 window.showComingSoon = showComingSoon;
 window.initServicesScroll = initServicesScroll;
-window.navigateCard = navigateCard;
