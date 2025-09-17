@@ -53,11 +53,11 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-container">
+            <div class="hero-badge">
+                <i class="fas fa-rocket"></i>
+                Disponibile per nuovi progetti
+            </div>
             <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-rocket"></i>
-                    Disponibile per nuovi progetti
-                </div>
                 <h1 class="hero-title">Trasformo idee in soluzioni digitali</h1>
                 <p class="hero-subtitle">
                     Sono Andrea, consulente IT con oltre 8 anni di esperienza. 
@@ -101,7 +101,6 @@
                         <span class="skill-tag">Node.js</span>
                         <span class="skill-tag">Proxmox</span>
                         <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">DevOps</span>
                     </div>
                 </div>
             </div>
@@ -257,12 +256,6 @@
             <!-- Mobile Services Scroll -->
             <div class="services-scroll-container">
                 <div class="services-scroll" id="servicesScroll">
-                    <button class="card-nav card-nav-prev" onclick="navigateCard(-1)">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="card-nav card-nav-next" onclick="navigateCard(1)">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
                     <div class="service-card-mobile">
                         <div class="service-icon-mobile">
                             <i class="fas fa-laptop-code"></i>
@@ -332,15 +325,6 @@
                     </div>
                 </div>
                 
-                <div class="scroll-indicator">
-                    <i class="fas fa-hand-point-right"></i> Scorri per vedere tutti i servizi
-                </div>
-                <div class="scroll-dots">
-                    <div class="scroll-dot active"></div>
-                    <div class="scroll-dot"></div>
-                    <div class="scroll-dot"></div>
-                    <div class="scroll-dot"></div>
-                </div>
             </div>
         </div>
     </section>
@@ -462,28 +446,6 @@
         </div>
     </section>
 
-    <!-- Admin Panel -->
-    <div class="admin-panel" id="adminPanel">
-        <button class="admin-toggle" onclick="toggleAdmin()">
-            <i class="fas fa-edit"></i>
-        </button>
-        <div class="admin-header">
-            <i class="fas fa-pencil-alt"></i>
-            <h3>Nuovo Articolo</h3>
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="articleTitle">Titolo</label>
-            <input type="text" id="articleTitle" class="form-input" placeholder="Inserisci il titolo dell'articolo">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="articleContent">Contenuto</label>
-            <textarea id="articleContent" class="form-textarea" placeholder="Scrivi il contenuto dell'articolo..."></textarea>
-        </div>
-        <button class="publish-btn" onclick="publishArticle()">
-            <i class="fas fa-paper-plane"></i>
-            Pubblica Articolo
-        </button>
-    </div>
 
     <!-- Contact Section -->
     <section id="contatti" class="section">
