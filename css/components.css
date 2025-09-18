@@ -61,12 +61,12 @@
 .section-badge {
     background: rgba(99, 102, 241, 0.1);
     color: var(--primary);
-    padding: 0.8rem 2.6rem;
+    padding: 0.4rem 2.6rem;
     border-radius: 40px;
     font-size: 1.9rem;
     font-weight: 600;
     display: inline-block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
@@ -170,6 +170,9 @@
     overflow: hidden;
     border: 1px solid var(--border);
     transition: var(--transition);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 [data-theme="dark"] .blog-card {
@@ -182,23 +185,171 @@
 }
 
 .blog-image {
-    height: 200px;
+    height: 150px;
     background: var(--gradient);
     position: relative;
     overflow: hidden;
 }
 
-.blog-image::after {
-    content: '📝';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3rem;
+/* Blog image icon removed - using real images now */
+
+.blog-date {
+    background: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+}
+
+.blog-date i {
+    margin-right: 0.5rem;
 }
 
 .blog-content {
-    padding: 1.5rem;
+    padding: 1.2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mobile Blog Scroll Container */
+.blog-scroll-container {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .blog-grid {
+        display: none !important;
+    }
+
+    .blog-scroll-container {
+        display: block !important;
+        width: 100%;
+        margin-top: 2rem;
+    }
+}
+
+.blog-scroll {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 1rem 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.blog-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.blog-card-mobile {
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    min-width: 280px;
+    max-width: 280px;
+    scroll-snap-align: center;
+    border: 1px solid var(--border);
+}
+
+.blog-card-mobile:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.blog-date-mobile {
+    background: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+}
+
+.blog-date-mobile i {
+    margin-right: 0.5rem;
+}
+
+.blog-image-mobile {
+    height: 100px;
+    background: var(--gradient);
+    border-radius: 8px;
+    margin: 0 1rem 1rem;
+}
+
+.blog-content-mobile {
+    padding: 0 1rem 1.2rem;
+}
+
+.blog-meta-mobile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.blog-tag-mobile {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.blog-title-mobile {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    color: var(--text-primary);
+}
+
+.blog-title-mobile a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.blog-title-mobile a:hover {
+    color: var(--primary);
+}
+
+.blog-excerpt-mobile {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.read-more-mobile {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.read-more-mobile:hover {
+    color: var(--primary-dark);
+}
+
+.read-more-mobile i {
+    font-size: 0.75rem;
 }
 
 .blog-meta {
@@ -215,6 +366,16 @@
     font-weight: 600;
     margin-bottom: 0.75rem;
     line-height: 1.4;
+}
+
+.blog-title a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.blog-title a:hover {
+    color: var(--primary);
 }
 
 .blog-excerpt {
