@@ -8,23 +8,42 @@ class BlogManager {
             month: '',
             tag: ''
         };
+        this.currentPage = 1;
+        this.articlesPerPage = this.getArticlesPerPage();
 
         this.init();
+    }
+
+    getArticlesPerPage() {
+        return window.innerWidth <= 768 ? 3 : 6;
     }
 
     async init() {
         await this.loadArticles();
         this.setupEventListeners();
         this.setupTagFilters();
+        this.setupMonthFilters();
         this.setupURLParams();
         this.renderArticles();
+        this.setupResponsive();
+    }
+
+    setupResponsive() {
+        window.addEventListener('resize', () => {
+            const newArticlesPerPage = this.getArticlesPerPage();
+            if (newArticlesPerPage !== this.articlesPerPage) {
+                this.articlesPerPage = newArticlesPerPage;
+                this.currentPage = 1; // Reset to first page when changing articles per page
+                this.renderArticles();
+            }
+        });
     }
 
     async loadArticles() {
         try {
             document.getElementById('loading').style.display = 'block';
             console.log('Caricamento articoli...');
-            const response = await fetch('data/articles.json');
+            const response = await fetch(`data/articles.json?t=${Date.now()}`);
             console.log('Response status:', response.status);
 
             if (!response.ok) {
@@ -32,6 +51,8 @@ class BlogManager {
             }
 
             this.articles = await response.json();
+            // Sort articles by date (newest first)
+            this.articles.sort((a, b) => new Date(b.date) - new Date(a.date));
             console.log('Articoli caricati:', this.articles.length);
             this.filteredArticles = [...this.articles];
             document.getElementById('loading').style.display = 'none';
@@ -42,39 +63,44 @@ class BlogManager {
             // Fallback: usa dati hardcoded se il fetch fallisce
             this.articles = [
                 {
-                    "id": "proxmox-vs-esxi-2025",
-                    "title": "Proxmox vs ESXi: quale hypervisor scegliere nel 2025",
-                    "date": "2025-09-15",
-                    "month": "2025-09",
-                    "tags": ["virtualizzazione", "proxmox", "esxi", "infrastructure"],
-                    "excerpt": "Confronto approfondito tra le due piattaforme di virtualizzazione più diffuse. Analisi di costi, performance e casi d'uso per aiutarti nella scelta migliore per la tua infrastruttura.",
-                    "url": "proxmox-vs-esxi-2025.html",
-                    "readTime": "10 min",
-                    "featured": true
+                    "id": "interrail-via-degli-dei",
+                    "title": "Zaino in Spalla",
+                    "date": "2025-04-14",
+                    "month": "2025-04",
+                    "tags": ["Viaggi"],
+                    "excerpt": "Le mie vacanze zaino in spalla stanno per iniziare e la mia mente è già proiettata verso l'avventura che mi aspetta. Quest'anno ho deciso di combinare due esperienze completamente diverse: un viaggio in Interrail attraverso l'Europa e il Cammino degli Dei.",
+                    "url": "interrail-via-degli-dei.html",
+                    "readTime": "4 min",
+                    "featured": true,
+                    "image": "../assets/images/blog_images/ZainoInSpalla.png"
                 },
                 {
-                    "id": "cloud-migration-strategy",
-                    "title": "Migrazione Cloud: strategia e implementazione",
-                    "date": "2025-09-08",
-                    "month": "2025-09",
-                    "tags": ["cloud", "aws", "azure", "migration", "strategy"],
-                    "excerpt": "Guida completa per una migrazione cloud sicura e senza interruzioni. Dalla pianificazione all'esecuzione: strategie, tool e best practices per il successo.",
-                    "url": "cloud-migration-strategy.html",
-                    "readTime": "12 min",
-                    "featured": true
+                    "id": "rilevazione-dati-finanziari",
+                    "title": "Dati Finanziari",
+                    "date": "2025-02-25",
+                    "month": "2025-02",
+                    "tags": ["Finanza Personale"],
+                    "excerpt": "Gestire le proprie finanze personali è fondamentale per mantenere un equilibrio economico e pianificare il futuro con sicurezza. Rilevare con precisione entrate e uscite permette di avere una visione chiara della propria situazione economica.",
+                    "url": "rilevazione-dati-finanziari.html",
+                    "readTime": "6 min",
+                    "featured": true,
+                    "image": "../assets/images/blog_images/Budgeting.png"
                 },
                 {
-                    "id": "sicurezza-pmi-errori",
-                    "title": "Sicurezza informatica per PMI: errori da evitare",
-                    "date": "2025-09-01",
-                    "month": "2025-09",
-                    "tags": ["security", "cybersecurity", "pmi", "best-practices"],
-                    "excerpt": "I 7 errori più comuni che mettono a rischio i dati aziendali e come evitarli. Consigli pratici e checklist per proteggere la tua attività dai rischi cyber.",
-                    "url": "sicurezza-pmi-errori.html",
+                    "id": "benvenuti-blog-personale",
+                    "title": "Il Mio Blog",
+                    "date": "2025-02-17",
+                    "month": "2025-02",
+                    "tags": ["Personale"],
+                    "excerpt": "Mi chiamo Andrea Pompili e sono una persona appassionata di crescita personale, tecnologia, finanza, sport e viaggi. Ho deciso di creare questo blog per condividere con voi ciò che sto imparando, i miei interessi e le mie esperienze.",
+                    "url": "benvenuti-blog-personale.html",
                     "readTime": "8 min",
-                    "featured": false
+                    "featured": true,
+                    "image": "../assets/images/blog_images/Why.png"
                 }
             ];
+            // Sort fallback articles by date (newest first)
+            this.articles.sort((a, b) => new Date(b.date) - new Date(a.date));
             this.filteredArticles = [...this.articles];
             document.getElementById('loading').style.display = 'none';
             console.log('Usando dati fallback, articoli:', this.articles.length);
@@ -83,34 +109,14 @@ class BlogManager {
 
     setupEventListeners() {
 
-        // Desktop Month filter
-        const monthFilter = document.getElementById('monthFilter');
-        monthFilter.addEventListener('change', (e) => {
-            this.currentFilters.month = e.target.value;
-            this.applyFilters();
-        });
-
-        // Desktop Tag filter
-        const tagFilter = document.getElementById('tagFilter');
-        tagFilter.addEventListener('change', (e) => {
-            this.currentFilters.tag = e.target.value;
-            this.applyFilters();
-        });
-
-        // Desktop Clear filters
-        const clearFilters = document.getElementById('clearFilters');
-        clearFilters.addEventListener('click', () => {
-            this.clearAllFilters();
-        });
-
-        // Mobile filter popup
-        const mobileFilterToggle = document.getElementById('mobileFilterToggle');
+        // Desktop and Mobile filter popup
+        const desktopFilterToggle = document.getElementById('desktopFilterToggle');
         const filterPopupOverlay = document.getElementById('filterPopupOverlay');
         const filterPopupClose = document.getElementById('filterPopupClose');
         const applyFiltersMobile = document.getElementById('applyFiltersMobile');
         const clearFiltersMobile = document.getElementById('clearFiltersMobile');
 
-        mobileFilterToggle.addEventListener('click', () => {
+        desktopFilterToggle.addEventListener('click', () => {
             this.openMobileFilters();
         });
 
@@ -136,25 +142,40 @@ class BlogManager {
 
     setupTagFilters() {
         const allTags = [...new Set(this.articles.flatMap(article => article.tags))].sort();
-        const tagSelect = document.getElementById('tagFilter');
         const tagSelectMobile = document.getElementById('tagFilterMobile');
 
         // Clear existing options except the first one
-        tagSelect.innerHTML = '<option value="">Tutti i tag</option>';
         tagSelectMobile.innerHTML = '<option value="">Tutti i tag</option>';
 
         allTags.forEach(tag => {
-            // Desktop option
-            const option = document.createElement('option');
-            option.value = tag;
-            option.textContent = tag;
-            tagSelect.appendChild(option);
-
             // Mobile option
             const optionMobile = document.createElement('option');
             optionMobile.value = tag;
             optionMobile.textContent = tag;
             tagSelectMobile.appendChild(optionMobile);
+        });
+    }
+
+    setupMonthFilters() {
+        const allMonths = [...new Set(this.articles.map(article => article.month))].sort().reverse();
+        const monthSelectMobile = document.getElementById('monthFilterMobile');
+
+        // Clear existing options except the first one
+        monthSelectMobile.innerHTML = '<option value="">Tutti i mesi</option>';
+
+        allMonths.forEach(month => {
+            const [year, monthNum] = month.split('-');
+            const monthNames = [
+                'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
+                'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'
+            ];
+            const monthName = monthNames[parseInt(monthNum) - 1];
+            const displayText = `${monthName} ${year}`;
+
+            const optionMobile = document.createElement('option');
+            optionMobile.value = month;
+            optionMobile.textContent = displayText;
+            monthSelectMobile.appendChild(optionMobile);
         });
     }
 
@@ -164,7 +185,6 @@ class BlogManager {
         // Handle month param
         const monthParam = urlParams.get('month');
         if (monthParam) {
-            document.getElementById('monthFilter').value = monthParam;
             this.currentFilters.month = monthParam;
         }
 
@@ -172,7 +192,6 @@ class BlogManager {
         const tagParam = urlParams.get('tag');
         if (tagParam) {
             this.currentFilters.tag = tagParam;
-            document.getElementById('tagFilter').value = tagParam;
         }
 
         if (monthParam || tagParam) {
@@ -196,41 +215,110 @@ class BlogManager {
             return true;
         });
 
+        // Reset to first page when filters change
+        this.currentPage = 1;
         this.renderArticles();
         this.updateURL();
     }
 
 
     renderArticles() {
-        this.renderFeaturedArticles();
-        this.renderAllArticles();
+        const startIndex = (this.currentPage - 1) * this.articlesPerPage;
+        const endIndex = startIndex + this.articlesPerPage;
+        const currentPageArticles = this.filteredArticles.slice(startIndex, endIndex);
+
+        // Render current page articles
+        const articlesGrid = document.getElementById('articlesGrid');
+        articlesGrid.innerHTML = currentPageArticles.map(article =>
+            this.createArticleCard(article, false)
+        ).join('');
 
         // Show/hide no results
         const noResults = document.getElementById('noResults');
         noResults.style.display = this.filteredArticles.length === 0 ? 'block' : 'none';
 
-        // Show/hide featured section
-        const featuredSection = document.getElementById('featuredSection');
-        const hasFeatured = this.filteredArticles.some(article => article.featured);
-        featuredSection.style.display = hasFeatured ? 'block' : 'none';
+        // Update pagination
+        this.updatePagination();
     }
 
-    renderFeaturedArticles() {
-        const featuredGrid = document.getElementById('featuredGrid');
-        const featuredArticles = this.filteredArticles.filter(article => article.featured);
+    updatePagination() {
+        const totalPages = Math.ceil(this.filteredArticles.length / this.articlesPerPage);
+        const paginationContainer = document.getElementById('paginationContainer');
 
-        featuredGrid.innerHTML = featuredArticles.map(article =>
-            this.createArticleCard(article, true)
-        ).join('');
+        // Hide pagination if only one page or no articles
+        if (totalPages <= 1) {
+            paginationContainer.style.display = 'none';
+            return;
+        }
+
+        paginationContainer.style.display = 'block';
+
+        // Update pagination info
+        const startIndex = (this.currentPage - 1) * this.articlesPerPage + 1;
+        const endIndex = Math.min(this.currentPage * this.articlesPerPage, this.filteredArticles.length);
+        const paginationInfo = document.getElementById('paginationInfo');
+        paginationInfo.textContent = `Mostrando ${startIndex}-${endIndex} di ${this.filteredArticles.length} articoli`;
+
+        // Update previous/next buttons
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        prevBtn.disabled = this.currentPage === 1;
+        nextBtn.disabled = this.currentPage === totalPages;
+
+        // Update page numbers
+        this.renderPageNumbers(totalPages);
     }
 
-    renderAllArticles() {
-        const articlesGrid = document.getElementById('articlesGrid');
-        const regularArticles = this.filteredArticles.filter(article => !article.featured);
+    renderPageNumbers(totalPages) {
+        const paginationNumbers = document.getElementById('paginationNumbers');
+        const currentPage = this.currentPage;
+        let pages = [];
 
-        articlesGrid.innerHTML = regularArticles.map(article =>
-            this.createArticleCard(article, false)
-        ).join('');
+        if (totalPages <= 7) {
+            // Show all pages if total is 7 or less
+            for (let i = 1; i <= totalPages; i++) {
+                pages.push(i);
+            }
+        } else {
+            // Show smart pagination with ellipsis
+            if (currentPage <= 4) {
+                pages = [1, 2, 3, 4, 5, '...', totalPages];
+            } else if (currentPage >= totalPages - 3) {
+                pages = [1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+            } else {
+                pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
+            }
+        }
+
+        paginationNumbers.innerHTML = pages.map(page => {
+            if (page === '...') {
+                return '<span class="pagination-ellipsis">...</span>';
+            }
+
+            const isActive = page === currentPage;
+            return `<button class="pagination-number ${isActive ? 'active' : ''}"
+                           onclick="blogManager.goToPage(${page})">${page}</button>`;
+        }).join('');
+    }
+
+    goToPage(page) {
+        this.currentPage = page;
+        this.renderArticles();
+        // Scroll to top of articles section
+        document.getElementById('articlesGrid').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    nextPage() {
+        const totalPages = Math.ceil(this.filteredArticles.length / this.articlesPerPage);
+        if (this.currentPage < totalPages) {
+            this.goToPage(this.currentPage + 1);
+        }
+    }
+
+    previousPage() {
+        if (this.currentPage > 1) {
+            this.goToPage(this.currentPage - 1);
+        }
     }
 
     createArticleCard(article, isFeatured = false) {
@@ -252,9 +340,13 @@ class BlogManager {
             ? 'onclick="showComingSoon()" style="cursor: not-allowed; opacity: 0.7;"'
             : '';
 
+        const imageStyle = article.image
+            ? `style="background-image: url('${article.image}'); background-size: cover; background-position: center;"`
+            : '';
+
         return `
             <article class="article-card ${featuredClass}">
-                <div class="article-image"></div>
+                <div class="article-image" ${imageStyle}></div>
                 <div class="article-content">
                     <div class="article-meta">
                         <span><i class="fas fa-calendar"></i> ${this.formatDate(article.date)}</span>
@@ -321,12 +413,11 @@ class BlogManager {
             tag: ''
         };
 
-        // Clear form inputs
-        document.getElementById('monthFilter').value = '';
-        document.getElementById('tagFilter').value = '';
-
         // Clear URL
         window.history.replaceState({}, '', window.location.pathname);
+
+        // Reset to first page
+        this.currentPage = 1;
 
         // Re-render
         this.applyFilters();
@@ -355,10 +446,6 @@ class BlogManager {
         this.currentFilters.month = monthValue;
         this.currentFilters.tag = tagValue;
 
-        // Sync desktop filters
-        document.getElementById('monthFilter').value = monthValue;
-        document.getElementById('tagFilter').value = tagValue;
-
         // Apply filters and close popup
         this.applyFilters();
         this.closeMobileFilters();
@@ -374,10 +461,6 @@ class BlogManager {
             month: '',
             tag: ''
         };
-
-        // Sync desktop filters
-        document.getElementById('monthFilter').value = '';
-        document.getElementById('tagFilter').value = '';
 
         // Clear URL
         window.history.replaceState({}, '', window.location.pathname);
@@ -414,9 +497,6 @@ document.addEventListener('click', (e) => {
         if (window.blogManager) {
             window.blogManager.clearAllFilters();
             window.blogManager.currentFilters.tag = tag;
-
-            // Update UI
-            document.getElementById('tagFilter').value = tag;
 
             window.blogManager.applyFilters();
         }
