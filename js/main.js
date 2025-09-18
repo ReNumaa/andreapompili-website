@@ -112,7 +112,62 @@ function initServicesScroll() {
 // Initialize on load
 window.addEventListener('load', () => {
     initServicesScroll();
+    initBlogScroll();
 });
+
+// Blog scroll functionality (similar to services)
+function initBlogScroll() {
+    const blogScroll = document.getElementById('blogScroll');
+    const blogScrollDots = document.getElementById('blogScrollDots');
+
+    if (!blogScroll || !blogScrollDots) return;
+
+    const blogCards = blogScroll.querySelectorAll('.blog-card-mobile');
+    const dots = blogScrollDots.querySelectorAll('.scroll-dot');
+
+    if (blogCards.length === 0 || dots.length === 0) return;
+
+    let currentBlogIndex = 0;
+
+    // Update dots based on scroll position
+    function updateBlogDots() {
+        const scrollLeft = blogScroll.scrollLeft;
+        const cardWidth = blogCards[0].offsetWidth + 24; // card width + gap
+        const newIndex = Math.round(scrollLeft / cardWidth);
+
+        if (newIndex !== currentBlogIndex && newIndex >= 0 && newIndex < blogCards.length) {
+            currentBlogIndex = newIndex;
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentBlogIndex);
+            });
+        }
+    }
+
+    // Scroll to specific blog card
+    function scrollToBlogCard(index) {
+        const cardWidth = blogCards[0].offsetWidth + 24; // card width + gap
+        blogScroll.scrollTo({
+            left: index * cardWidth,
+            behavior: 'smooth'
+        });
+    }
+
+    // Add event listeners
+    blogScroll.addEventListener('scroll', updateBlogDots);
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            scrollToBlogCard(index);
+        });
+    });
+
+    // Auto-scroll blog cards every 5 seconds
+    setInterval(() => {
+        const nextIndex = (currentBlogIndex + 1) % blogCards.length;
+        scrollToBlogCard(nextIndex);
+    }, 5000);
+}
 
 // Close mobile menu on window resize
 window.addEventListener('resize', () => {
@@ -236,3 +291,4 @@ window.toggleAdmin = toggleAdmin;
 window.publishArticle = publishArticle;
 window.showComingSoon = showComingSoon;
 window.initServicesScroll = initServicesScroll;
+window.initBlogScroll = initBlogScroll;
