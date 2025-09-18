@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'importanza della rilevazione dei dati finanziari | Andrea Pompili</title>
+    <meta name="description" content="Gestire le proprie finanze personali è fondamentale per mantenere un equilibrio economico e pianificare il futuro con sicurezza. Scopri come rilevare e analizzare i tuoi dati finanziari.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/Andrea.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/Andrea.png">
+    <link rel="apple-touch-icon" href="../assets/images/Andrea.png">
+    <link rel="shortcut icon" href="../assets/images/Andrea.png">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <style>
+        .blog-header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            min-height: 80px;
+            margin-top: 80px;
+        }
+
+        /* Fix mobile menu z-index */
+        .mobile-menu {
+            z-index: 999999 !important;
+        }
+
+        .mobile-menu-overlay {
+            z-index: 999998 !important;
+        }
+
+
+        .blog-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            line-height: 1.8;
+        }
+
+        .highlight-section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            border-left: 5px solid var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="dark"] .highlight-section {
+            background: var(--accent);
+        }
+
+        .section-icon {
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .experience-box h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero-image {
+            text-align: center;
+            margin: 0.3rem 0 0.8rem 0;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 90%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (max-width: 768px) {
+            .hero-image {
+                margin: 0.2rem 0 0.6rem 0;
+            }
+
+            .hero-image img {
+                width: 95%;
+                height: 140px;
+            }
+        }
+
+        .numbered-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .numbered-list li {
+            counter-increment: step-counter;
+            margin: 2rem 0;
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .numbered-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--primary);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Andrea Pompili</a>
+            <div class="nav-links">
+                <a href="../index.html#home" class="nav-link">Home</a>
+                <a href="../index.html#about" class="nav-link">Chi Sono</a>
+                <a href="../index.html#servizi" class="nav-link">Servizi</a>
+                <a href="../index.html" class="nav-link active">Blog</a>
+                <a href="../index.html#contatti" class="nav-link">Contatti</a>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="mobile-menu-header">
+            <h3>Menù</h3>
+            <p>Andrea Pompili</p>
+        </div>
+
+        <nav class="mobile-menu-nav">
+            <a href="../index.html#home" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
+            <a href="../index.html#about" class="mobile-nav-link" onclick="closeMobileMenu()">Chi Sono</a>
+            <a href="../index.html#servizi" class="mobile-nav-link" onclick="closeMobileMenu()">Servizi</a>
+            <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
+            <a href="../index.html#contatti" class="mobile-nav-link" onclick="closeMobileMenu()">Contatti</a>
+        </nav>
+
+        <div class="mobile-menu-footer">
+            <small>© 2025 Andrea Pompili</small>
+        </div>
+    </div>
+
+    <header class="blog-header">
+        <div class="container">
+            <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; font-size: 0.9rem; opacity: 1; text-align: center; padding: 0.7rem 0; white-space: nowrap;">
+                <span><i class="fas fa-calendar"></i> 25 Febbraio 2025</span>
+                <span><i class="fas fa-clock"></i> 6 min di lettura</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="blog-content">
+        <div class="hero-image">
+            <img src="../assets/images/blog_images/Budgeting.png" alt="Budgeting e rilevazione dati finanziari" />
+        </div>
+
+        <p class="lead">
+            Gestire le proprie finanze personali è fondamentale per mantenere un equilibrio economico e pianificare il futuro con sicurezza.
+            Rilevare con precisione entrate e uscite permette di avere una visione chiara della propria situazione economica, prendere decisioni
+            informate e impostare obiettivi concreti per il risparmio e gli investimenti.
+        </p>
+
+        <h2>Perché è importante rilevare i dati finanziari?</h2>
+
+        <ol class="numbered-list">
+            <li>
+                <h3>Controllo e consapevolezza</h3>
+                <p>
+                    Senza un monitoraggio costante, è facile perdere di vista la reale situazione economica. Raccogliere e analizzare i dati
+                    finanziari permette di capire da dove provengono le entrate, quali sono le principali spese e individuare eventuali sprechi.
+                </p>
+            </li>
+
+            <li>
+                <h3>Pianificazione e budgeting</h3>
+                <p>
+                    Avere una chiara panoramica delle proprie finanze aiuta a creare un budget realistico. Questo permette di stabilire obiettivi
+                    finanziari a breve e lungo termine, come l'accantonamento di risparmi, la riduzione dei debiti o il raggiungimento di un
+                    determinato livello di investimenti.
+                </p>
+            </li>
+
+            <li>
+                <h3>Ottimizzazione delle risorse</h3>
+                <p>
+                    Analizzando le entrate e le uscite, si possono identificare margini di miglioramento e opportunità di risparmio. Ad esempio,
+                    ridurre spese superflue o migliorare la gestione delle uscite mensili può fare una grande differenza nel lungo periodo.
+                </p>
+            </li>
+
+            <li>
+                <h3>Decisioni informate</h3>
+                <p>
+                    Ogni decisione economica dovrebbe basarsi su dati concreti. La rilevazione accurata delle finanze consente di prendere
+                    decisioni ponderate su spese importanti, investimenti e risparmi futuri.
+                </p>
+            </li>
+
+            <li>
+                <h3>Conformità e controllo delle spese</h3>
+                <p>
+                    Tenere traccia delle transazioni economiche è fondamentale per evitare sorprese a fine mese e gestire al meglio il proprio
+                    denaro. Una registrazione precisa facilita la comprensione dei flussi di denaro e permette di avere maggiore controllo
+                    sulle spese quotidiane.
+                </p>
+            </li>
+        </ol>
+
+        <div class="experience-box">
+            <h3><i class="fas fa-chart-line"></i> La mia esperienza personale nella rilevazione dei dati finanziari</h3>
+            <p>
+                Rilevo le mie entrate e le mie spese da parecchi anni. Inizialmente utilizzavo app di budgeting sul telefono, ma dal 2021/22
+                ho deciso di passare a Excel per avere maggiore controllo e personalizzazione sui miei dati.
+            </p>
+            <p>
+                Nel 2023, ho creato il mio personale spreadsheet per la gestione finanziaria, che sto ottimizzando tutt'ora. Ricordo perfettamente
+                il momento in cui ho iniziato a costruire questo file: ero in aereo, in direzione Boston, con partenza da Milano. Durante il volo,
+                ho messo insieme la struttura del mio foglio di calcolo, pensando a come renderlo il più efficace possibile per il mio utilizzo personale.
+            </p>
+            <p>
+                Da allora, ho continuato a migliorarlo, adattandolo alle mie esigenze e implementando nuove funzionalità per analizzare al meglio
+                le mie finanze.
+            </p>
+        </div>
+
+        <h2>Consigli pratici per iniziare</h2>
+
+        <div class="highlight-section">
+            <div class="section-icon">
+                <i class="fas fa-laptop"></i>
+            </div>
+            <h3>Utilizzare strumenti digitali</h3>
+            <p>
+                Esistono numerosi strumenti che semplificano la gestione finanziaria, come app di budgeting o fogli di calcolo personalizzati.
+                Excel, Google Sheets o altri software di contabilità possono essere ottimi alleati per registrare entrate e uscite con precisione.
+            </p>
+        </div>
+
+        <div class="highlight-section">
+            <div class="section-icon">
+                <i class="fas fa-chart-bar"></i>
+            </div>
+            <h3>Analizzare periodicamente i dati</h3>
+            <p>
+                Non basta registrare le transazioni: è importante analizzarle regolarmente. Un report mensile o trimestrale può fornire insight
+                preziosi sulla gestione del proprio denaro e permettere di apportare eventuali correzioni.
+            </p>
+        </div>
+
+        <div class="highlight-section">
+            <div class="section-icon">
+                <i class="fas fa-target"></i>
+            </div>
+            <h3>Impostare obiettivi di risparmio e investimento</h3>
+            <p>
+                Avere dati chiari sulle proprie finanze aiuta a stabilire obiettivi finanziari concreti, che siano il risparmio per un acquisto
+                importante, la costruzione di un fondo di emergenza o l'investimento in strumenti finanziari.
+            </p>
+        </div>
+
+        <h2>Conclusione</h2>
+        <p>
+            La rilevazione dei dati finanziari è un'abitudine essenziale per gestire al meglio il proprio denaro. La mia esperienza personale
+            mi ha insegnato che avere un sistema ben strutturato porta maggiore consapevolezza e sicurezza nelle decisioni economiche.
+        </p>
+        <p>
+            Se vuoi migliorare la tua gestione finanziaria, inizia a registrare le tue entrate e uscite: può sembrare un piccolo passo,
+            ma farà una grande differenza nel lungo periodo.
+        </p>
+
+        <div style="background: var(--surface); border-radius: 12px; padding: 2rem; margin: 3rem 0; text-align: center; border: 1px solid var(--border);">
+            <h3 style="margin-bottom: 1rem;"><i class="fas fa-handshake"></i> Hai bisogno di supporto per la tua gestione finanziaria digitale?</h3>
+            <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+                Posso aiutarti a creare soluzioni personalizzate per la gestione dei tuoi dati finanziari.
+            </p>
+            <a href="../index.html#contatti" class="btn-primary">
+                <i class="fas fa-envelope"></i>
+                Contattami
+            </a>
+        </div>
+    </article>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

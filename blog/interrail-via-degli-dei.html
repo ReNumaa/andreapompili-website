@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le mie vacanze zaino in spalla stanno per iniziare: Interrail e Via degli Dei | Andrea Pompili</title>
+    <meta name="description" content="Scopri i miei piani di viaggio con Interrail attraverso l'Europa e l'avventura del Cammino degli Dei tra Bologna e Firenze.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/Andrea.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/Andrea.png">
+    <link rel="apple-touch-icon" href="../assets/images/Andrea.png">
+    <link rel="shortcut icon" href="../assets/images/Andrea.png">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <style>
+        .blog-header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            min-height: 80px;
+            margin-top: 80px;
+        }
+
+        /* Fix mobile menu z-index */
+        .mobile-menu {
+            z-index: 999999 !important;
+        }
+
+        .mobile-menu-overlay {
+            z-index: 999998 !important;
+        }
+
+
+        .blog-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-image {
+            text-align: center;
+            margin: 0.3rem 0 0.8rem 0;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 90%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (max-width: 768px) {
+            .hero-image {
+                margin: 0.2rem 0 0.6rem 0;
+            }
+
+            .hero-image img {
+                width: 95%;
+                height: 140px;
+            }
+        }
+
+        .blog-content h2 {
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .blog-content em {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .highlight-box {
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .highlight-box h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Andrea Pompili</a>
+            <div class="nav-links">
+                <a href="../index.html#home" class="nav-link">Home</a>
+                <a href="../index.html#about" class="nav-link">Chi Sono</a>
+                <a href="../index.html#servizi" class="nav-link">Servizi</a>
+                <a href="index.html" class="nav-link active">Blog</a>
+                <a href="../index.html#contatti" class="nav-link">Contatti</a>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="mobile-menu-header">
+            <h3>Menù</h3>
+            <p>Andrea Pompili</p>
+        </div>
+
+        <nav class="mobile-menu-nav">
+            <a href="../index.html#home" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
+            <a href="../index.html#about" class="mobile-nav-link" onclick="closeMobileMenu()">Chi Sono</a>
+            <a href="../index.html#servizi" class="mobile-nav-link" onclick="closeMobileMenu()">Servizi</a>
+            <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
+            <a href="../index.html#contatti" class="mobile-nav-link" onclick="closeMobileMenu()">Contatti</a>
+        </nav>
+
+        <div class="mobile-menu-footer">
+            <small>© 2025 Andrea Pompili</small>
+        </div>
+    </div>
+
+    <header class="blog-header">
+        <div class="container">
+            <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; font-size: 0.9rem; opacity: 1; text-align: center; padding: 0.7rem 0; white-space: nowrap;">
+                <span><i class="fas fa-calendar"></i> 14 Aprile 2025</span>
+                <span><i class="fas fa-clock"></i> 4 min di lettura</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="blog-content">
+        <div class="hero-image">
+            <img src="../assets/images/blog_images/ZainoInSpalla.png" alt="Interrail e Via degli Dei" />
+        </div>
+
+        <p>Le mie vacanze zaino in spalla stanno per iniziare e la mia mente è già proiettata verso l'avventura che mi aspetta. Quest'anno ho deciso di combinare due esperienze completamente diverse ma ugualmente entusiasmanti: un viaggio in Interrail attraverso l'Europa e il Cammino degli Dei, il suggestivo percorso che collega Bologna a Firenze.</p>
+
+        <h2>Interrail: l'Europa a portata di treno</h2>
+
+        <p>L'Interrail rappresenta per me molto più di un semplice mezzo di trasporto: è la libertà di esplorare l'Europa seguendo l'istinto del momento. Con il pass in tasca, potrò saltare da una città all'altra, da una nazione all'altra, senza la rigidità di un itinerario prestabilito.</p>
+
+        <p>Ho già iniziato a sognare le prime tappe: <strong>Amsterdam</strong> con i suoi canali e l'atmosfera rilassata, <strong>Berlino</strong> con la sua storia che traspira da ogni angolo, <strong>Praga</strong> con le sue guglie gotiche che si stagliano nel cielo. Ogni destinazione sarà una scoperta, ogni treno un'opportunità per incontrare persone nuove e ascoltare storie diverse.</p>
+
+        <p>Una delle cose che più mi affascina dell'Interrail è la possibilità di viaggiare lentamente, di osservare il paesaggio che cambia dal finestrino, di apprezzare le differenze culturali che si manifestano anche solo nel modo in cui le persone salgono e scendono dai treni. È un modo di viaggiare che ci riconnette con il viaggio stesso, non solo con la destinazione.</p>
+
+        <h2>Via degli Dei: un cammino tra storia e natura</h2>
+
+        <p>Dopo l'esperienza urbana e cosmopolita dell'Interrail, ho scelto di immergermi completamente nella natura italiana percorrendo la <strong>Via degli Dei</strong>. Questo antico cammino, che attraversa l'Appennino tosco-emiliano, è un viaggio nel tempo e nello spazio che promette di essere tanto sfidante quanto rigenerante.</p>
+
+        <p>Il percorso di circa 130 chilometri si snoda tra boschi secolari, antichi borghi e panorami mozzafiato. Ogni passo sarà un dialogo silenzioso con la storia: seguirò infatti le orme dei pellegrini medievali che per secoli hanno calcato questi sentieri, ma anche quelle più antiche degli Etruschi e dei Romani.</p>
+
+        <p>Mi affascina l'idea di camminare per giorni con tutto l'essenziale nello zaino, di dormire in piccoli rifugi o agriturismi lungo il percorso, di vivere secondo i ritmi naturali del sole. Il Cammino degli Dei rappresenta un'occasione unica per disconnettermi dal mondo digitale e riconnettermi con me stesso.</p>
+
+        <h2>Due esperienze, un'unica filosofia</h2>
+
+        <p>Apparentemente diverse, queste due esperienze condividono una filosofia comune: il viaggio lento, consapevole, autentico. Sia che si tratti di attraversare l'Europa in treno o di percorrere antichi sentieri a piedi, l'obiettivo è lo stesso: <em>vivere pienamente ogni momento del viaggio</em>.</p>
+
+        <p>Non vedo l'ora di partire con il mio zaino in spalla, di sentire il peso dell'essenziale sulle spalle e la leggerezza dell'anima che si prepara all'avventura. Questi viaggi rappresentano per me molto più di una semplice vacanza: sono opportunità di crescita, di scoperta, di connessione profonda con luoghi, persone e, soprattutto, con me stesso.</p>
+
+        <div class="highlight-box">
+            <h3><i class="fas fa-backpack"></i> L'essenza del viaggio zaino in spalla</h3>
+            <p>
+                Il viaggio zaino in spalla non è solo un modo di viaggiare, ma una filosofia di vita. Significa portare con sé solo l'essenziale, essere pronti all'imprevisto, abbracciare la semplicità. È un'esperienza che insegna il valore delle cose importanti e la bellezza della libertà.
+            </p>
+        </div>
+
+        <p>L'avventura sta per iniziare, e io sono pronto ad abbandonarmi completamente alla bellezza dell'imprevisto e alla magia del viaggio zaino in spalla. 🎒✨</p>
+
+        <div style="background: var(--surface); border-radius: 12px; padding: 2rem; margin: 3rem 0; text-align: center; border: 1px solid var(--border);">
+            <h3 style="margin-bottom: 1rem;"><i class="fas fa-envelope"></i> Hai esperienze di viaggio da condividere?</h3>
+            <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+                Se hai fatto l'Interrail o percorso cammini simili, mi piacerebbe sentire la tua esperienza!
+            </p>
+            <a href="../index.html#contatti" class="btn-primary">
+                <i class="fas fa-paper-plane"></i>
+                Contattami
+            </a>
+        </div>
+    </article>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

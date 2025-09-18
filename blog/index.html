@@ -39,7 +39,7 @@
                 <a href="../index.html#home" class="nav-link">Home</a>
                 <a href="../index.html#about" class="nav-link">Chi Sono</a>
                 <a href="../index.html#servizi" class="nav-link">Servizi</a>
-                <a href="./" class="nav-link active">Blog</a>
+                <a href="index.html" class="nav-link active">Blog</a>
                 <a href="../index.html#contatti" class="nav-link">Contatti</a>
             </div>
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
@@ -66,7 +66,7 @@
             <a href="../index.html#home" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
             <a href="../index.html#about" class="mobile-nav-link" onclick="closeMobileMenu()">Chi Sono</a>
             <a href="../index.html#servizi" class="mobile-nav-link" onclick="closeMobileMenu()">Servizi</a>
-            <a href="./" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
+            <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
             <a href="../index.html#contatti" class="mobile-nav-link" onclick="closeMobileMenu()">Contatti</a>
         </nav>
 
@@ -78,43 +78,9 @@
     <!-- Blog Header -->
     <section class="blog-header">
         <div class="container">
-            <h1 class="blog-header-title">Insights & Guide IT</h1>
-        </div>
-    </section>
-
-    <!-- Blog Filters -->
-    <section class="blog-filters-section">
-        <div class="container">
-            <!-- Desktop Filters -->
-            <div class="blog-filters desktop-filters">
-                <div class="filter-container">
-                    <div class="filter-group">
-                        <label class="filter-label">Mese:</label>
-                        <select id="monthFilter" class="filter-select">
-                            <option value="">Tutti i mesi</option>
-                            <option value="2025-09">Settembre 2025</option>
-                            <option value="2025-08">Agosto 2025</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label class="filter-label">Tag:</label>
-                        <select id="tagFilter" class="filter-select">
-                            <option value="">Tutti i tag</option>
-                            <!-- Tags will be populated by JavaScript -->
-                        </select>
-                    </div>
-
-                    <button class="clear-filters-btn" id="clearFilters">
-                        <i class="fas fa-times"></i>
-                        Pulisci filtri
-                    </button>
-                </div>
-            </div>
-
-            <!-- Mobile Filter Button -->
-            <div class="mobile-filter-button">
-                <button class="filter-toggle-btn" id="mobileFilterToggle">
+            <div class="blog-header-content">
+                <span class="section-badge">ReNuma's Blog</span>
+                <button class="filter-toggle-btn" id="desktopFilterToggle">
                     <i class="fas fa-filter"></i>
                     Filtri
                 </button>
@@ -138,6 +104,7 @@
                         <option value="">Tutti i mesi</option>
                         <option value="2025-09">Settembre 2025</option>
                         <option value="2025-08">Agosto 2025</option>
+                        <option value="2025-02">Febbraio 2025</option>
                     </select>
                 </div>
 
@@ -166,21 +133,28 @@
     <section class="blog-content">
         <div class="container">
 
-            <!-- Featured Articles -->
-            <div class="featured-section" id="featuredSection">
-                <h2 class="featured-title">
-                    Articoli in evidenza
-                </h2>
-                <div class="featured-grid" id="featuredGrid">
-                    <!-- Featured articles will be populated by JavaScript -->
-                </div>
-            </div>
-
-            <!-- All Articles -->
+            <!-- Articles Grid -->
             <div class="articles-section">
-                <h2 class="articles-title" id="articlesTitle">Tutti gli articoli</h2>
                 <div class="articles-grid" id="articlesGrid">
                     <!-- Articles will be populated by JavaScript -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container" id="paginationContainer">
+                    <div class="pagination-info" id="paginationInfo">
+                        <!-- Showing X-Y of Z articles -->
+                    </div>
+                    <div class="pagination-controls" id="paginationControls">
+                        <button class="pagination-btn" id="prevBtn" onclick="blogManager.previousPage()">
+                            <i class="fas fa-chevron-left"></i> Precedente
+                        </button>
+                        <div class="pagination-numbers" id="paginationNumbers">
+                            <!-- Page numbers will be populated by JavaScript -->
+                        </div>
+                        <button class="pagination-btn" id="nextBtn" onclick="blogManager.nextPage()">
+                            Successivo <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- No Results -->

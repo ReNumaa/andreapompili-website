@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benvenuti nel mio blog personale | Andrea Pompili</title>
+    <meta name="description" content="Benvenuti nel mio blog! Condivido esperienze su crescita personale, tecnologia, finanza, sport e viaggi. Scopri chi sono e cosa mi ispira.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/Andrea.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/Andrea.png">
+    <link rel="apple-touch-icon" href="../assets/images/Andrea.png">
+    <link rel="shortcut icon" href="../assets/images/Andrea.png">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <style>
+        .blog-header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            min-height: 80px;
+            margin-top: 80px;
+        }
+
+        /* Fix mobile menu z-index */
+        .mobile-menu {
+            z-index: 999999 !important;
+        }
+
+        .mobile-menu-overlay {
+            z-index: 999998 !important;
+        }
+
+
+        .blog-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            line-height: 1.8;
+        }
+
+
+        .topic-section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            border-left: 5px solid var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        [data-theme="dark"] .topic-section {
+            background: var(--accent);
+        }
+
+        .topic-icon {
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box {
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .highlight-box h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero-image {
+            text-align: center;
+            margin: 0.3rem 0 0.8rem 0;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 90%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (max-width: 768px) {
+            .hero-image {
+                margin: 0.2rem 0 0.6rem 0;
+            }
+
+            .hero-image img {
+                width: 95%;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Andrea Pompili</a>
+            <div class="nav-links">
+                <a href="../index.html#home" class="nav-link">Home</a>
+                <a href="../index.html#about" class="nav-link">Chi Sono</a>
+                <a href="../index.html#servizi" class="nav-link">Servizi</a>
+                <a href="../index.html" class="nav-link active">Blog</a>
+                <a href="../index.html#contatti" class="nav-link">Contatti</a>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="mobile-menu-header">
+            <h3>Menù</h3>
+            <p>Andrea Pompili</p>
+        </div>
+
+        <nav class="mobile-menu-nav">
+            <a href="../index.html#home" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
+            <a href="../index.html#about" class="mobile-nav-link" onclick="closeMobileMenu()">Chi Sono</a>
+            <a href="../index.html#servizi" class="mobile-nav-link" onclick="closeMobileMenu()">Servizi</a>
+            <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()">Blog</a>
+            <a href="../index.html#contatti" class="mobile-nav-link" onclick="closeMobileMenu()">Contatti</a>
+        </nav>
+
+        <div class="mobile-menu-footer">
+            <small>© 2025 Andrea Pompili</small>
+        </div>
+    </div>
+
+    <header class="blog-header">
+        <div class="container">
+            <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; font-size: 0.9rem; opacity: 1; text-align: center; padding: 0.7rem 0; white-space: nowrap;">
+                <span><i class="fas fa-calendar"></i> 17 Febbraio 2025</span>
+                <span><i class="fas fa-clock"></i> 8 min di lettura</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="blog-content">
+        <div class="hero-image">
+            <img src="../assets/images/blog_images/Why.png" alt="Perché questo blog?" />
+        </div>
+
+        <p class="lead">
+            Mi chiamo Andrea Pompili e sono una persona appassionata di crescita personale, tecnologia, finanza, sport e viaggi.
+            Negli ultimi anni ho cercato di dedicare sempre più tempo a imparare, esplorare e migliorarmi in tutte queste aree.
+            Ho deciso di creare questo blog per condividere con voi ciò che sto imparando, i miei interessi e le mie esperienze.
+        </p>
+
+        <p>
+            Qui troverete articoli che spaziano da temi pratici come la finanza personale, con consigli su come gestire meglio
+            i propri soldi e pianificare per il futuro, a riflessioni su come migliorare la propria vita attraverso la tecnologia,
+            l'informatica e lo sport.
+        </p>
+
+        <div class="highlight-box">
+            <h3><i class="fas fa-lightbulb"></i> Chi sono e cosa mi ispira</h3>
+            <p>
+                Nella vita quotidiana, lavoro nel settore IT, un campo che mi ha sempre affascinato per la sua costante evoluzione
+                e le infinite possibilità che offre. La mia passione per la tecnologia mi ha portato a sperimentare con server,
+                dispositivi smart e a imparare tutto ciò che posso su nuove soluzioni informatiche.
+            </p>
+            <p>
+                Sono anche un runner, appassionato di sport, e ho recentemente completato una maratona, esperienza che mi ha
+                insegnato molto sulla determinazione e sulla gestione delle sfide. Lo sport, in particolare la corsa, è un'importante
+                parte della mia vita e mi aiuta a mantenere l'equilibrio tra corpo e mente, spingendomi sempre a superare i miei limiti.
+            </p>
+        </div>
+
+        <p>
+            Sono sempre alla ricerca di nuove opportunità di crescita e apprendimento, sia in ambito tecnico che personale.
+            Credo che l'informazione e la curiosità siano gli strumenti più potenti per migliorarsi, e per questo motivo ho
+            deciso di creare questo spazio dove posso raccogliere idee e condividerle con chiunque sia interessato a esplorare
+            argomenti simili.
+        </p>
+
+        <h2>Cosa troverete in questo blog</h2>
+        <p>
+            In questo blog scriverò articoli su ciò che mi interessa di più e che credo possa essere utile anche a chi legge.
+            Ecco alcuni dei temi principali che tratterò:
+        </p>
+
+        <div class="topic-section">
+            <div class="topic-icon">
+                <i class="fas fa-plane"></i>
+            </div>
+            <h3>Viaggi</h3>
+            <p>
+                Amo scoprire nuovi posti, immergermi in culture diverse e vivere esperienze uniche. Condividerò i miei consigli
+                su come organizzare viaggi, racconti delle mie esperienze e suggerimenti su destinazioni che consiglio vivamente.
+                Credo che i viaggi siano una delle migliori scuole di vita, in grado di aprire la mente e arricchire la propria
+                visione del mondo.
+            </p>
+        </div>
+
+        <div class="topic-section">
+            <div class="topic-icon">
+                <i class="fas fa-euro-sign"></i>
+            </div>
+            <h3>Finanza personale</h3>
+            <p>
+                La gestione dei soldi è uno degli aspetti fondamentali della nostra vita, ma non sempre ci viene insegnato come
+                farlo nel modo giusto. Qui parlerò di strategie per risparmiare, investire, gestire il denaro in modo più consapevole
+                e come pianificare il proprio futuro finanziario. Condividerò anche alcuni dei metodi che personalmente utilizzo
+                per migliorare la mia gestione economica.
+            </p>
+        </div>
+
+        <div class="topic-section">
+            <div class="topic-icon">
+                <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3>Informatica e tecnologia</h3>
+            <p>
+                Mi interessa molto anche il mondo dell'informatica, sia a livello professionale che come hobby. Qui discuterò
+                di nuove tecnologie, software, app e strumenti digitali che mi aiutano nel lavoro e nella vita quotidiana.
+                Se anche voi siete appassionati di tech o vi interessa sapere come sfruttare al meglio i vostri dispositivi,
+                troverete sicuramente articoli interessanti.
+            </p>
+        </div>
+
+        <div class="topic-section">
+            <div class="topic-icon">
+                <i class="fas fa-running"></i>
+            </div>
+            <h3>Sport e benessere</h3>
+            <p>
+                Lo sport è una parte fondamentale della mia vita. Mi piace condividere consigli su come migliorare la propria
+                forma fisica, superare sfide personali e mantenere un equilibrio tra corpo e mente. Inoltre, parlerò di come
+                lo sport e la corsa, in particolare, abbiano un impatto positivo sulla mia vita quotidiana e sul mio sviluppo personale.
+            </p>
+        </div>
+
+        <div class="highlight-box">
+            <h3><i class="fas fa-seedling"></i> Un viaggio verso la crescita</h3>
+            <p>
+                Ogni giorno cerco di imparare qualcosa di nuovo, che sia un concetto tecnologico, una strategia finanziaria o
+                semplicemente una nuova destinazione da visitare. La mia missione con questo blog è quella di condividere il
+                mio percorso di crescita e aiutare chiunque voglia migliorare, sia attraverso conoscenze pratiche che esperienze di vita.
+            </p>
+            <p>
+                Non è mai troppo tardi per imparare qualcosa di nuovo, ed è questo che mi motiva ogni giorno.
+            </p>
+        </div>
+
+        <p>
+            Mi auguro che questo blog possa essere un punto di riferimento per chiunque sia alla ricerca di idee fresche,
+            ispirazione o semplicemente voglia condividere esperienze su temi che ci accomunano. Se avete domande o volete
+            approfondire qualche argomento in particolare, non esitate a scrivermi. Sarò felice di ascoltare le vostre opinioni
+            e di condividere il mio punto di vista.
+        </p>
+
+        <div style="background: var(--surface); border-radius: 12px; padding: 2rem; margin: 3rem 0; text-align: center; border: 1px solid var(--border);">
+            <h3 style="margin-bottom: 1rem;"><i class="fas fa-envelope"></i> Restiamo in contatto!</h3>
+            <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+                Vuoi condividere la tua esperienza o semplicemente fare una chiacchierata? Scrivimi!
+            </p>
+            <a href="../index.html#contatti" class="btn-primary">
+                <i class="fas fa-paper-plane"></i>
+                Contattami
+            </a>
+        </div>
+    </article>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
