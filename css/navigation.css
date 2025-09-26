@@ -11,6 +11,12 @@
     transition: var(--transition);
 }
 
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 0;
+    }
+}
+
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;

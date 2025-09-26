@@ -45,11 +45,11 @@
     }
 
     .section {
-        padding: 3rem 0;
+        padding: 2.5rem 0;
     }
 
     .section-header {
-        margin-bottom: 1rem;
+        margin-bottom: 0.2rem;
     }
 
     .section-badge {
@@ -104,6 +104,7 @@
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
+        margin-top: 1rem;
     }
 
     .form-row {

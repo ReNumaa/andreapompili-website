@@ -202,6 +202,7 @@
 
     .hero-badge-desktop {
         order: unset;
+        margin-top: 1rem;
         margin-bottom: 1.5rem;
         align-self: unset;
         font-size: 0.875rem;
@@ -215,212 +216,290 @@
         order: unset;
         margin-bottom: unset;
     }
+
+    /* Hide mobile-specific tech tags on desktop */
+    .tech-tags {
+        display: none !important;
+    }
+
+    /* Reset mobile stats modifications for desktop */
+    .hero-stats {
+        gap: 2rem;
+        justify-content: unset;
+        flex-wrap: unset;
+        max-width: unset;
+        margin: unset;
+        display: flex;
+        width: unset;
+        background: unset;
+        border-radius: unset;
+        padding: unset;
+        box-shadow: unset;
+        backdrop-filter: unset;
+    }
+
+    .stat {
+        flex: unset;
+        text-align: center;
+        color: unset;
+        background: unset;
+        border-radius: unset;
+        padding: unset;
+        box-shadow: unset;
+        backdrop-filter: unset;
+        margin: unset;
+        max-width: unset;
+    }
+
+    /* Hide mobile name section on desktop */
+    .hero-name-mobile {
+        display: none !important;
+    }
+
+    /* Hide mobile stats section on desktop */
+    .mobile-stats-section {
+        display: none;
+    }
+
+    /* Hide mobile stat lines and restore original desktop text */
+    .stat-line {
+        display: none;
+    }
+
+    .stat-label::after {
+        display: block;
+    }
+
+    /* Restore original desktop stat labels */
+    .stat:nth-child(1) .stat-label::after {
+        content: "Progetti completati";
+    }
+
+    .stat:nth-child(2) .stat-label::after {
+        content: "Anni di esperienza";
+    }
+
+    .stat:nth-child(3) .stat-label::after {
+        content: "Clienti soddisfatti";
+    }
 }
 
-/* Mobile Hero Section - Modern Portfolio Style */
+/* Mobile Hero Section - Mobile-Specific Background Design */
 @media (max-width: 768px) {
     .hero {
-        min-height: 100vh;
-        padding: 80px 0 0 0;
+        min-height: 50vh;
+        padding: 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
         position: relative;
+        background: url('../assets/images/AndreaMobile.png') center 25%/cover no-repeat;
     }
 
     .hero::before {
-        background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 70%),
-                    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.1) 50%,
+            rgba(0, 0, 0, 0.4) 100%);
+        z-index: 1;
     }
 
     .hero-container {
         grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 1rem 1rem;
+        gap: 0;
+        padding: 2rem 1rem 3rem 1rem;
         text-align: center;
         max-width: 100%;
-        min-height: calc(100vh - 80px);
+        min-height: 50vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
+        position: relative;
+        z-index: 2;
+        transform: translateY(-5rem);
     }
 
-    /* Mobile Badge Section - Move badge to top */
+    /* Hide desktop elements */
     .hero-badge-desktop {
         display: none !important;
     }
 
     .hero-badge-mobile {
-        order: -2;
-        margin-bottom: 0.5rem;
-        align-self: center;
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
-        background: rgba(99, 102, 241, 0.15);
-        backdrop-filter: blur(5px);
+        display: none !important;
     }
 
-    /* Mobile Profile Section - Modern Chromeless Design */
+    /* Hide profile image section on mobile */
     .hero-image {
-        order: -1;
-        margin-bottom: 0.5rem;
-        position: relative;
-        z-index: 2;
+        display: none !important;
     }
 
-    .profile-card {
-        background: transparent;
-        border-radius: 0;
-        padding: 0;
-        box-shadow: none;
-        border: none;
-        transform: none;
-        animation: mobileProfileIn 1.2s ease-out;
-        max-width: 100%;
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    .profile-card::before {
-        display: none;
-    }
-
-    .profile-avatar {
-        width: 140px;
-        height: 140px;
-        margin: 0 auto 0.7rem auto;
-        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
-        border: 5px solid rgba(255, 255, 255, 0.9);
-        position: relative;
-        overflow: hidden;
-        background: var(--gradient);
-    }
-
-    [data-theme="dark"] .profile-avatar {
-        border: 6px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
-    }
-
-    .profile-avatar::before {
-        content: '';
-        position: absolute;
-        top: -3px;
-        left: -3px;
-        right: -3px;
-        bottom: -3px;
-        background: var(--gradient);
-        border-radius: 50%;
-        z-index: -1;
-        animation: avatarPulse 4s ease-in-out infinite;
-    }
-
-    .profile-name {
-        font-size: 2rem;
-        font-weight: 900;
-        margin-bottom: 0.3rem;
-        background: var(--gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        letter-spacing: -0.02em;
-    }
-
-    .profile-title {
-        font-size: 1rem;
-        margin-bottom: 0.7rem;
-        font-weight: 500;
-        color: var(--text-secondary);
-        opacity: 0.9;
-    }
-
-    .profile-skills {
-        gap: 0.5rem;
-        margin-bottom: 0;
-        justify-content: center;
-        flex-wrap: wrap;
-        max-width: 300px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .skill-tag {
-        font-size: 0.75rem;
-        padding: 0.4rem 0.8rem;
-        background: rgba(99, 102, 241, 0.1);
-        border: 1px solid rgba(99, 102, 241, 0.2);
-        border-radius: 20px;
-        backdrop-filter: blur(5px);
-        transition: all 0.3s ease;
-    }
-
-    .skill-tag:hover {
-        background: rgba(99, 102, 241, 0.15);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(99, 102, 241, 0.2);
-    }
-
-    /* Mobile Content Section */
+    /* Mobile Content Section - Full redesign */
     .hero-content {
-        order: 2;
+        order: 1;
         animation: mobileContentIn 1.2s ease-out 0.3s both;
         max-width: 100%;
+        color: white;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
     .hero-title {
-        font-size: 2rem;
-        line-height: 1.2;
-        margin-bottom: 0.8rem;
+        font-size: 2.5rem;
+        line-height: 1.1;
+        margin-bottom: 0.1rem;
         font-weight: 800;
+        color: white !important;
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        -webkit-text-fill-color: unset !important;
+        background-clip: unset !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
+
     .hero-subtitle {
-        font-size: 1rem;
-        margin-bottom: 1.2rem;
-        line-height: 1.5;
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
+        display: none;
     }
 
     .hero-buttons {
-        flex-direction: column;
-        gap: 0.75rem;
-        margin-bottom: 2rem;
-        max-width: 280px;
-        margin-left: auto;
-        margin-right: auto;
+        display: none;
     }
 
-    .btn-primary, .btn-secondary {
+    .hero-content {
+        position: relative;
+    }
+
+    /* Container for name and tech tags and title */
+    .hero-name-mobile,
+    .tech-tags,
+    .hero-title {
+        position: relative;
+        z-index: 5;
+    }
+
+    .hero-title::before {
+        content: '';
+        position: absolute;
+        top: -0.5rem;
+        left: calc(50% - 165px);
+        right: calc(50% - 165px);
+        bottom: -8rem;
+        background: rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(15px);
+        border-radius: 18px;
+        z-index: -1;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Show and style mobile name section */
+    .hero-name-mobile {
+        display: block !important;
+        text-align: left;
+        margin-bottom: 0.5rem;
         width: 100%;
-        justify-content: center;
-        padding: 1rem;
-        border-radius: 12px;
+        padding-left: calc(50% - 150px);
+        padding-top: 1rem;
+    }
+
+    .hero-name-mobile h2 {
+        font-size: 1.5rem;
         font-weight: 600;
+        color: white;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        margin: 0;
+        margin-bottom: 0.2rem;
+    }
+
+    .hero-name-mobile p {
+        font-size: 1rem;
+        color: white;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        margin: 0;
+        opacity: 0.9;
+    }
+
+    .tech-tags {
+        display: flex;
+        gap: 0.4rem;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin: 0.5rem 0;
+        width: 100%;
+        padding-left: calc(50% - 150px);
+        padding-bottom: 1rem;
+    }
+
+    .tech-tag {
+        background: rgba(255, 255, 255, 0.9);
+        color: #333;
+        padding: 0.25rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 500;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Show mobile stats section */
+    .mobile-stats-section {
+        display: block;
+        padding: 2rem 0;
+        background: transparent;
     }
 
     .hero-stats {
         gap: 1rem;
         justify-content: center;
-        flex-wrap: wrap;
-        max-width: 300px;
+        flex-wrap: nowrap;
+        max-width: 100%;
         margin: 0 auto;
+        display: flex;
+        width: 100%;
     }
 
     .stat {
-        min-width: 80px;
-        padding: 0.5rem;
+        flex: 1;
+        text-align: center;
+        color: #333;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 1rem 0.2rem;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        margin: 0 0.15rem;
+        max-width: 90px;
     }
 
     .stat-number {
-        font-size: 1.5rem;
-        margin-bottom: 0.2rem;
+        font-size: 1.6rem;
+        margin-bottom: 0.3rem;
+        font-weight: 800;
+        color: var(--primary);
+        display: block;
     }
 
     .stat-label {
-        font-size: 0.75rem;
-        line-height: 1.3;
+        font-size: 0.7rem;
+        line-height: 0.8;
+        color: #666;
+        font-weight: 500;
+    }
+
+    .stat-line {
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 0.1rem;
+    }
+
+    .stat-line:last-child {
+        margin-bottom: 0;
     }
 
     @keyframes mobileProfileIn {
@@ -460,65 +539,58 @@
 /* Extra small mobile devices */
 @media (max-width: 480px) {
     .hero {
-        padding: 70px 0 0 0;
+        padding: 0;
     }
 
     .hero-container {
-        padding: 1.5rem 0.75rem;
-        min-height: calc(100vh - 70px);
+        padding: 1.5rem 1rem;
+        min-height: 100vh;
     }
 
-    .profile-card {
-        max-width: 100%;
-        padding: 0;
-        border-radius: 0;
-    }
-
-    .profile-avatar {
-        width: 140px;
-        height: 140px;
-        border-width: 4px;
-    }
-
-    .profile-name {
-        font-size: 1.9rem;
-    }
-
-    .profile-title {
-        font-size: 1rem;
-    }
-
-    .profile-skills {
-        max-width: 280px;
-    }
-
-    .hero-title {
-        font-size: 1.9rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-        max-width: 95%;
-    }
-
-    .hero-buttons {
-        max-width: 260px;
-    }
-
-    .btn-primary, .btn-secondary {
-        padding: 0.9rem;
-        font-size: 0.9rem;
-    }
-
-    .stat {
-        min-width: 70px;
-    }
-
-    .stat-number {
+    .hero-name-mobile h2 {
         font-size: 1.3rem;
     }
 
+    .hero-name-mobile p {
+        font-size: 0.9rem;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .tech-tag {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .mobile-stats-section {
+        padding: 1.5rem 0;
+    }
+
+    .stat {
+        padding: 0.8rem 0.1rem;
+        margin: 0 0.1rem;
+        max-width: 80px;
+    }
+
+    .stat-number {
+        font-size: 1.6rem;
+    }
+
     .stat-label {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
+        line-height: 0.8;
+    }
+
+    .stat-line {
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 0.1rem;
+    }
+
+    .stat-line:last-child {
+        margin-bottom: 0;
     }
 }
