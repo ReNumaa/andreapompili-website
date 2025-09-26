@@ -8,20 +8,43 @@
 
 .blog-header-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    position: relative;
+}
+
+.blog-header-content .filter-toggle-btn {
+    position: absolute;
+    right: 0;
+    padding: 0.5rem;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 768px) {
     .blog-header-content {
         justify-content: center;
-        flex-direction: column;
+        flex-direction: row;
+        align-items: center;
     }
 
     .blog-header-content .filter-toggle-btn {
-        order: 2;
+        padding: 0.4rem;
+        font-size: 0.75rem;
+        border-radius: 50%;
+        min-width: 36px;
+        height: 36px;
+    }
+
+    .blog-header-content .filter-toggle-btn i {
+        font-size: 0.7rem;
+        margin: 0;
     }
 }
 
