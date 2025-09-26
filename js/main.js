@@ -162,11 +162,6 @@ function initBlogScroll() {
         });
     });
 
-    // Auto-scroll blog cards every 5 seconds
-    setInterval(() => {
-        const nextIndex = (currentBlogIndex + 1) % blogCards.length;
-        scrollToBlogCard(nextIndex);
-    }, 5000);
 }
 
 // Close mobile menu on window resize
